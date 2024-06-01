@@ -1,0 +1,32 @@
+BV ^{
+	OnLoad ^{
+		0RFEUtilities ^{
+			0=RFEUtilitiesInit = ImportedFunction('RFEUtilities', 'RFEUtilitiesInit');
+			0=RFEUtilitiesInit(GalaxyPtr());
+			0=ObjectOwnerString = ImportedFunction('RFEUtilities', 'ObjectOwnerString');
+			0=ShipOwnerString = ImportedFunction('RFEUtilities', 'ShipOwnerString');
+			0=ItemOwnerString = ImportedFunction('RFEUtilities', 'ItemOwnerString');
+			0=PlanetOwnerString = ImportedFunction('RFEUtilities', 'PlanetOwnerString');
+		}
+	}
+	OnStart ^{
+		0DayScripts ^{
+			00_RFEUtilities=ScriptRun(ShipStar(Player()), GetShipPlanet(Player()), 'RFEUtilities');
+		}
+	}
+}
+Data ^{
+	Script ^{
+		RFEUtilities=0,Script.RFEUtilities
+	}
+	ScriptLibs ^{
+		RFEUtilities ^{
+			RFEUtilitiesInit=void,RFEUtilitiesInit,dword
+			ObjectOwnerString=str,ObjectOwnerString,dword
+			ShipOwnerString=str,ShipOwnerString,dword
+			ItemOwnerString=str,ItemOwnerString,dword
+			PlanetOwnerString=str,PlanetOwnerString,dword
+			Path=Mods\SolyankaRFE\RFEUtilities\DATA\RFEUtilities.dll
+		}
+	}
+}
