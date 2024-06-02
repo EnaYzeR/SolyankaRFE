@@ -1,32 +1,330 @@
-BV ^{
-    OnLoad ^{
-        0RFEUtilities ^{
-            0=RFEUtilitiesInit = ImportedFunction('RFEUtilities', 'RFEUtilitiesInit');
-            0=RFEUtilitiesInit(GalaxyPtr());
-            0=ObjectOwnerString = ImportedFunction('RFEUtilities', 'ObjectOwnerString');
-            0=ShipOwnerString = ImportedFunction('RFEUtilities', 'ShipOwnerString');
-            0=ItemOwnerString = ImportedFunction('RFEUtilities', 'ItemOwnerString');
-            0=PlanetOwnerString = ImportedFunction('RFEUtilities', 'PlanetOwnerString');
+ML ^{
+    EquipmentShop ^{
+        Panel ^{
+            RFECammonPanelsButton ^{
+                Panel ^{
+                    GraphButton ^{
+                        ImageDown=GI,Graphicks.CammonPanel_Button_D
+                        ImageNormal=GI,Graphicks.CammonPanel_Button_N
+                        ImageNormalA=GI,Graphicks.CammonPanel_Button_A
+                        Kind=Disable
+                        KindHit=Graph
+                        MouseBlocking=True
+                        OnPressCode ^{
+                            01=OpenCustomForm('RFECammonPanels');
+                        }
+                        Pos=33,5,0
+                        Size=64,21
+                        Style=Style.GB.SoundNormal
+                    }
+                    Image ^{
+                        Image=GI,Graphicks.CammonPanelForm
+                        Pos=0,0,1
+                        Size=120,43
+                    }
+                    Pos=10,687,1
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=0
+                    PosAutoCorrectionYCoef=1
+                    Size=120,43
+                }
+            }
         }
     }
-    OnStart ^{
-        0DayScripts ^{
-            00_RFEUtilities=ScriptRun(ShipStar(Player()), GetShipPlanet(Player()), 'RFEUtilities');
+    GoodsShop ^{
+        Panel ^{
+            RFECammonPanelsButton ^{
+                Panel ^{
+                    GraphButton ^{
+                        ImageDown=GI,Graphicks.CammonPanel_Button_D
+                        ImageNormal=GI,Graphicks.CammonPanel_Button_N
+                        ImageNormalA=GI,Graphicks.CammonPanel_Button_A
+                        Kind=Disable
+                        KindHit=Graph
+                        MouseBlocking=True
+                        OnPressCode ^{
+                            00=OpenCustomForm('RFECammonPanels');
+                        }
+                        Pos=33,5,0
+                        Size=64,21
+                        Style=Style.GB.SoundNormal
+                    }
+                    Image ^{
+                        Image=GI,Graphicks.CammonPanelForm
+                        Pos=0,0,1
+                        Size=120,43
+                    }
+                    Pos=10,687,10
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=0
+                    PosAutoCorrectionYCoef=1
+                    Size=120,43
+                }
+            }
         }
     }
-}
-Data ^{
-    Script ^{
-        RFEUtilities=0,Script.RFEUtilities
+    Info ^{
+        Panel ^{
+            RFECammonPanelsButton ^{
+                Panel ^{
+                    GraphButton ^{
+                        ImageDown=GI,Graphicks.CammonPanel_Button_D
+                        ImageNormal=GI,Graphicks.CammonPanel_Button_N
+                        ImageNormalA=GI,Graphicks.CammonPanel_Button_A
+                        Kind=Disable
+                        KindHit=Graph
+                        MouseBlocking=True
+                        OnPressCode ^{
+                            00=OpenCustomForm('RFECammonPanels');
+                        }
+                        Pos=33,5,0
+                        Size=64,21
+                        Style=Style.GB.SoundNormal
+                    }
+                    Image ^{
+                        Image=GI,Graphicks.CammonPanelForm
+                        Pos=0,0,1
+                        Size=120,43
+                    }
+                    Pos=10,687,1
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=0
+                    PosAutoCorrectionYCoef=1
+                    Size=120,43
+                }
+            }
+        }
     }
-    ScriptLibs ^{
-        RFEUtilities ^{
-            ItemOwnerString=str,ItemOwnerString,dword
-            ObjectOwnerString=str,ObjectOwnerString,dword
-            Path=Mods\SolyankaRFE\RFEUtilities\DATA\RFEUtilities.dll
-            PlanetOwnerString=str,PlanetOwnerString,dword
-            RFEUtilitiesInit=void,RFEUtilitiesInit,dword
-            ShipOwnerString=str,ShipOwnerString,dword
+    Planet ^{
+        Panel ^{
+            RFECammonPanelsButton ^{
+                Panel ^{
+                    GraphButton ^{
+                        ImageDown=GI,Graphicks.CammonPanel_Button_D
+                        ImageNormal=GI,Graphicks.CammonPanel_Button_N
+                        ImageNormalA=GI,Graphicks.CammonPanel_Button_A
+                        Kind=Disable
+                        KindHit=Graph
+                        MouseBlocking=True
+                        OnPressCode ^{
+                            00=OpenCustomForm('RFECammonPanels');
+                        }
+                        Pos=33,5,0
+                        Size=64,21
+                        Style=Style.GB.SoundNormal
+                    }
+                    Image ^{
+                        Image=GI,Graphicks.CammonPanelForm
+                        Pos=0,0,1
+                        Size=120,43
+                    }
+                    Pos=10,687,1
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=0
+                    PosAutoCorrectionYCoef=1
+                    Size=120,43
+                }
+            }
+        }
+    }
+    PlanetNO ^{
+        Panel ^{
+            RFECammonPanelsButton ^{
+                Panel ^{
+                    GraphButton ^{
+                        ImageDown=GI,Graphicks.CammonPanel_Button_D
+                        ImageNormal=GI,Graphicks.CammonPanel_Button_N
+                        ImageNormalA=GI,Graphicks.CammonPanel_Button_A
+                        Kind=Disable
+                        KindHit=Graph
+                        MouseBlocking=True
+                        OnPressCode ^{
+                            00=OpenCustomForm('RFECammonPanels');
+                        }
+                        Pos=33,5,0
+                        Size=64,21
+                        Style=Style.GB.SoundNormal
+                    }
+                    Image ^{
+                        Image=GI,Graphicks.CammonPanelForm
+                        Pos=0,0,1
+                        Size=120,43
+                    }
+                    Pos=10,687,1
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=0
+                    PosAutoCorrectionYCoef=1
+                    Size=120,43
+                }
+            }
+        }
+    }
+    RFECammonPanels ^{
+        Border=0,0,1024,768
+        CodeBeforeRun ^{
+            zzzzzzzzzz_CammonPanelCode ^{
+                01=str AddThisButton = '', BlockInLang = ''; unknown buttons_from_lang; int cur_block = 0, buttonCount = CT('Mods.RFECammonPanels.Buttons', buttons_from_lang), Ymove = 50;
+                02=for(cur_block = 0; cur_block < buttonCount; cur_block = cur_block + 1)
+                03 ^{
+                    01=BlockInLang = 'Mods.RFECammonPanels.Buttons.' + GetVariableName(buttons_from_lang[cur_block]);
+                    02=if(!BlockExist(BlockInLang))continue;
+                    03=AddThisButton = CT(BlockInLang + '.ButtonName');
+                    04=if(AddThisButton == '')continue;
+                    05=CustomInterfacePos(AddThisButton, 36, Ymove);
+                    06=if(CustomInterfaceState(AddThisButton))Ymove = Ymove + 50;
+                }
+                04=CustomInterfacePos('CammonPanelExit', 36, Ymove);
+                05=ExecuteCodeFromString(GenerateCodeStringFromBlock('Mods.RFECammonPanels.RandomImageCode'));
+            }
+        }
+        Panel ^{
+            Image ^{
+                Image=GI,Graphicks.WindowCammonPanelBG
+                Pos=0,0,11
+                Size=1020,740
+            }
+            Name=CammonPanelMainPanel
+            OnKey ^{
+                00=if(KEY==27)CloseCustomForm(1);
+            }
+            Panel ^{
+                CammonPanelExitButton ^{
+                    GraphButton ^{
+                        Caption=Выход
+                        CaptionColorDisable=0,34,54
+                        CaptionColorDisableA=0,34,54
+                        CaptionColorDown=0,44,70
+                        CaptionColorDownA=0,44,70
+                        CaptionColorNormal=0,44,70
+                        CaptionColorNormalA=50,240,252
+                        CaptionShadow=1
+                        CaptionShadowColorDisable=0,110,176
+                        CaptionShadowColorDisableA=0,110,176
+                        CaptionShadowColorDown=37,178,189
+                        CaptionShadowColorDownA=37,178,189
+                        CaptionShadowColorNormal=37,178,189
+                        CaptionShadowColorNormalA=0,0,0
+                        CaptionSme=0,-1,1,0
+                        Font=Font.2NormalBold
+                        ImageDown=GI,Graphicks.ButtonD
+                        ImageNormal=GI,Graphicks.ButtonN
+                        Kind=Normal
+                        KindHit=Rect
+                        Name=CammonPanelExit
+                        OnPressCode ^{
+                            00=CloseCustomForm(1);
+                        }
+                        Pos=36,50,1
+                        Size=175,33
+                        Style=Style.GB.SoundNormal
+                    }
+                    GraphButton ^{
+                        Active=False
+                        ImageDown=GI,Bm.FormGalaxy2.2CancelD
+                        ImageNormal=GI,Bm.FormGalaxy2.2CancelN
+                        ImageNormalA=GI,Bm.FormGalaxy2.2CancelA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        Name=RandomImagePanelShow
+                        OnPressCode ^{
+                            01=CustomInterfaceState('RandomImagePanel', 1);
+                            02=CustomInterfaceState('RandomImagePanelShow', -1);
+                            03=InterfaceText('StarMap','StarMap_RFECammonPanelsButton_Label', 1);
+                        }
+                        Pos=800,50,0
+                        Size=79,39
+                        Style=Style.GB.SoundNormal
+                    }
+                    Panel ^{
+                        Active=False
+                        GraphButton ^{
+                            ImageDown=GI,Bm.FormGalaxy2.2CancelD
+                            ImageNormal=GI,Bm.FormGalaxy2.2CancelN
+                            ImageNormalA=GI,Bm.FormGalaxy2.2CancelA
+                            Kind=Normal
+                            KindHit=Rect
+                            MouseBlocking=True
+                            Name=RandomImagePanelHide
+                            OnPressCode ^{
+                                01=CustomInterfaceState('RandomImagePanel', -1);
+                                02=CustomInterfaceState('RandomImagePanelShow', 1);
+                                03=InterfaceText('StarMap','StarMap_RFECammonPanelsButton_Label', 0);
+                            }
+                            Pos=600,50,0
+                            Size=79,39
+                            Style=Style.GB.SoundNormal
+                        }
+                        Image ^{
+                            Active=False
+                            Image=GI,Graphicks.WindowCammonPanelBG
+                            Name=RandomImage
+                            Pos=30,60,1
+                            Size=750,600
+                        }
+                        Name=RandomImagePanel
+                        Pos=200,0,1
+                        Size=1000,700
+                        Window ^{
+                            Pos=30,60,2
+                            Size=750,600
+                            Style=Style.Window.2PQuestPar
+                        }
+                    }
+                }
+                Name=CammonPanelButtons
+                Pos=0,0,0
+                Size=1020,740
+            }
+            Pos=0,0
+            PosAutoCorrection=True
+            PosAutoCorrectionXCoef=0.5
+            PosAutoCorrectionYCoef=0.5
+            Size=1024,768
+        }
+    }
+    StarMap ^{
+        Panel ^{
+            Panel ^{
+                RFECammonPanelsButton ^{
+                    Panel ^{
+                        GraphButton ^{
+                            ImageDown=GI,Graphicks.CammonPanel_Button_D
+                            ImageNormal=GI,Graphicks.CammonPanel_Button_N
+                            ImageNormalA=GI,Graphicks.CammonPanel_Button_A
+                            Kind=Disable
+                            KindHit=Graph
+                            MouseBlocking=True
+                            OnPressCode ^{
+                                00=OpenCustomForm('RFECammonPanels');
+                                01=if(CurrentForm()=='StarMap')FormChange('StarMap');
+                            }
+                            Pos=33,5,0
+                            Size=64,21
+                            Style=Style.GB.SoundNormal
+                        }
+                        Image ^{
+                            Image=GI,Graphicks.CammonPanelForm
+                            Pos=0,0,1
+                            Size=120,43
+                        }
+                        Label ^{
+                            Active=False
+                            Font=Font.2Normal
+                            Name=StarMap_RFECammonPanelsButton_Label
+                            Pos=0,0,0
+                            Size=1,1
+                            Text=1
+                            TextColor=0,0,0
+                        }
+                        Pos=-502,303,10
+                        PosAutoCorrection=True
+                        PosAutoCorrectionXCoef=-0.5
+                        PosAutoCorrectionYCoef=0.5
+                        Size=120,43
+                    }
+                }
+            }
         }
     }
 }

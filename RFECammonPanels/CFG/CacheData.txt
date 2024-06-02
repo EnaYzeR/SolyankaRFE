@@ -1,3 +1,20 @@
-Script ^{
-    RFEUtilities=Mods\SolyankaRFE\RFEUtilities\DATA\Script\RFEUtilities.scr
+Bm ^{
+    CustomForm ^{
+        WindowCammonPanelTutorialBG=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\WindowCammonPanelTutorialBG.gi
+    }
+}
+Graphicks ^{
+    ButtonD=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\ButtonD.gi
+    ButtonN=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\ButtonN.gi
+    CammonPanelForm=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\CammonPanelForm.gi
+    CammonPanel_Button_A=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\CammonPanel_Button_A.gi
+    CammonPanel_Button_D=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\CammonPanel_Button_D.gi
+    CammonPanel_Button_N=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\CammonPanel_Button_N.gi
+    WindowCammonPanelBG=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\WindowCammonPanelBG.gi
+}
+RandomImage ^{
+    RFECammonPanels_1=Mods\SolyankaRFE\RFECammonPanels\DATA\RandomImage\image1.gi
+    RFECammonPanels_2=Mods\SolyankaRFE\RFECammonPanels\DATA\RandomImage\image2.gi
+    RFECammonPanels_3=Mods\SolyankaRFE\RFECammonPanels\DATA\RandomImage\image3.gi
+    RFECammonPanels_4=Mods\SolyankaRFE\RFECammonPanels\DATA\RandomImage\image4.gi
 }
