@@ -54,6 +54,10 @@ ML ^{
                     Kind=Disable
                     KindHit=Rect
                     Name=ButRecharge
+                    OnPressCode ^{
+                        01=
+                        02=
+                    }
                     Pos=23,11,8
                     Size=63,37
                     Style=Style.GB.SoundNormal

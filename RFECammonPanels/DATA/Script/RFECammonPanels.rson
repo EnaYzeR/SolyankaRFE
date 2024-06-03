@@ -86,7 +86,7 @@
           "Code.Type":  "Turn",
           "Code":          
           [
-              "if(!ShipFindCustomShipInfoByType(Player(),'RFECammonPanels_OnHangarOpenedInfo'))",
+              "if(!ShipFindCustomShipInfoByType(Player(),'RFECammonPanels_OnHangarOpenedInfo') == -1)",
               "{",
               "    ShipAddCustomShipInfo(Player(),'RFECammonPanels_OnHangarOpenedInfo');",
               "}"          
