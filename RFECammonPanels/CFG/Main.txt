@@ -61,7 +61,7 @@ ML ^{
                             01=dword currentWeapon = ShipWeapon(Player(), i);
                             02=if(currentWeapon)
                             03 ^{
-                                01=missilesToRearm = MissilesToRearm(currentWeapon);
+                                01=int missilesToRearm = MissilesToRearm(currentWeapon);
                                 02=if(missilesToRearm)
                                 03 ^{
                                     01=moneyToRecharge = moneyToRecharge + (CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel) * missilesToRearm);
