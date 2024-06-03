@@ -31,6 +31,94 @@ ML ^{
             }
         }
     }
+    Hangar ^{
+        Border=0,0,1024,768
+        Panel ^{
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+                GraphButton ^{
+                    Help=RFECammonPanels.Help.ButRecharge
+                    ImageDisable=GI,Bm.FormHangar2.2RechargeH
+                    ImageDown=GI,Bm.FormHangar2.2RechargeD
+                    ImageNormal=GI,Bm.FormHangar2.2RechargeN
+                    ImageNormalA=GI,Bm.FormHangar2.2RechargeA
+                    Kind=Disable
+                    KindHit=Rect
+                    Name=ButRecharge
+                    Pos=23,11,8
+                    Size=63,37
+                    Style=Style.GB.SoundNormal
+                }
+                GraphButton ^{
+                    Help=Help.ButRepair
+                    ImageDisable=GI,Bm.FormHangar2.2RepairH
+                    ImageDown=GI,Bm.FormHangar2.2RepairD
+                    ImageNormal=GI,Bm.FormHangar2.2RepairN
+                    ImageNormalA=GI,Bm.FormHangar2.2RepairA
+                    Kind=Disable
+                    KindHit=Rect
+                    Name=ButRepair
+                    Pos=83,11,8
+                    Size=63,37
+                    Style=Style.GB.SoundNormal
+                }
+                GraphButton ^{
+                    Help=Help.ButRefuel
+                    ImageDisable=GI,Bm.FormHangar2.2FuelH
+                    ImageDown=GI,Bm.FormHangar2.2FuelD
+                    ImageNormal=GI,Bm.FormHangar2.2FuelN
+                    ImageNormalA=GI,Bm.FormHangar2.2FuelA
+                    Kind=Disable
+                    KindHit=Graph
+                    Name=ButRefuel
+                    Pos=143,11,8
+                    Size=63,37
+                    Style=Style.GB.SoundNormal
+                }
+                GraphButton ^{
+                    Help=Help.ButTakeoff
+                    ImageDisable=GI,Bm.FormHangar2.2TakeOffH
+                    ImageDown=GI,Bm.FormHangar2.2TakeOffD
+                    ImageNormal=GI,Bm.FormHangar2.2TakeOffN
+                    ImageNormalA=GI,Bm.FormHangar2.2TakeOffA
+                    Kind=Disable
+                    KindHit=Graph
+                    Name=ButTakeOff
+                    Pos=203,11,8
+                    Size=63,37
+                    Style=Style.GB.SoundNormal
+                }
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormHangar2.2CloseD
+                    ImageNormal=GI,Bm.FormHangar2.2CloseN
+                    ImageNormalA=GI,Bm.FormHangar2.2CloseA
+                    Kind=Normal
+                    KindHit=Rect
+                    Name=ButClose
+                    Pos=285,26,8
+                    Size=61,35
+                    Style=Style.GB.SoundNormal
+                }
+                Image ^{
+                    Image=GI,Bm.FormHangar2.2Bottom
+                    Pos=0,0,10
+                    Size=372,63
+                }
+                Name=PanelDown
+                Pos=332,570,-10
+                Size=372,63
+            }
+        }
+    }
     GoodsShop ^{
         Panel ^{
             RFECammonPanelsButton ^{
@@ -190,7 +278,7 @@ ML ^{
             Panel ^{
                 CammonPanelExitButton ^{
                     GraphButton ^{
-                        Caption=Выход
+                        Caption=Р’С‹С…РѕРґ
                         CaptionColorDisable=0,34,54
                         CaptionColorDisableA=0,34,54
                         CaptionColorDown=0,44,70

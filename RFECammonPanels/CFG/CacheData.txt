@@ -2,6 +2,13 @@ Bm ^{
     CustomForm ^{
         WindowCammonPanelTutorialBG=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\WindowCammonPanelTutorialBG.gi
     }
+    FormHangar2 ^{
+        2Bottom=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2Bottom.gi
+        2RechargeH=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeH.gi
+        2RechargeD=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeD.gi
+        2RechargeN=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeN.gi
+        2RechargeA=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeA.gi
+    }
 }
 Graphicks ^{
     ButtonD=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\ButtonD.gi
