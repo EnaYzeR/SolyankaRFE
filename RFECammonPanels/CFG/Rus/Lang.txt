@@ -1,6 +1,6 @@
 RFECammonPanels ^{
     Help ^{
-        ButRecharge=Зарядить ракеты/торпеды
+        ButRecharge=Зарядить ракеты/торпеды (<color=255,245,80>C</color>)
     }
 }
 Mods ^{
