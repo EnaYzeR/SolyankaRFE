@@ -55,8 +55,27 @@ ML ^{
                     KindHit=Rect
                     Name=ButRecharge
                     OnPressCode ^{
-                        01=
-                        02=
+                        01=int moneyToRecharge = 0;
+                        02=for(int i = 1;i <= 5; i = i + 1)
+                        03 ^{
+                            01=dword currentWeapon = ShipWeapon(Player(), i);
+                            02=if(currentWeapon)
+                            03 ^{
+                                01=missilesToRearm = MissilesToRearm(currentWeapon);
+                                02=if(missilesToRearm)
+                                03 ^{
+                                    01=moneyToRecharge = moneyToRecharge + (CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel) * missilesToRearm);
+                                }
+                            }
+                        }
+                        04=if(moneyToRecharge < ShipMoney(Player()))
+                        05 ^{
+                            ShipMoney(Player(), ShipMoney(Player()) - moneyToRecharge);
+                        }
+                        06=else
+                        07 ^{
+                            Sound('Sound.NoMoney');
+                        }
                     }
                     Pos=23,11,8
                     Size=63,37
