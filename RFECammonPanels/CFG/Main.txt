@@ -416,3 +416,10 @@ ML ^{
         }
     }
 }
+
+
+Data ^{
+	Script ^{
+		RFECammonPanels=0,Script.RFECammonPanels
+	}
+}

@@ -25,3 +25,6 @@ RandomImage ^{
     RFECammonPanels_3=Mods\SolyankaRFE\RFECammonPanels\DATA\RandomImage\image3.gi
     RFECammonPanels_4=Mods\SolyankaRFE\RFECammonPanels\DATA\RandomImage\image4.gi
 }
+Script ^{
+    RFECammonPanels=Mods\SolyankaRFE\RFECammonPanels\DATA\Script\RFECammonPanels.scr
+}

@@ -29,3 +29,38 @@ Mods ^{
         }
     }
 }
+
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            RFECammonPanels_OnHangarOpenedInfo ^{
+                Icon=0
+                Name=OnHangarOpenedCallback
+                Description=NoShow
+
+				OnActCodeTypes=t_OnEnteringForm
+				OnActCode ^{
+                    01=int status = 0;
+					02=if(ScriptItemActionType(t_OnEnteringForm))
+                    03 ^{
+                        01=for(int i = 1; i <= 5; i++)
+                        02 ^{
+                            01=if(ShipWeapon(Player(), i))
+                            02 ^{
+
+                            }
+                        }
+                    }
+                    04=if(status)
+                    05 ^{
+
+                    }
+                    06=else
+                    07 ^{
+
+                    }
+				}
+            }
+        }
+    }
+}
