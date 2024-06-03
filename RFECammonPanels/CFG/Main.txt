@@ -55,25 +55,28 @@ ML ^{
                     KindHit=Rect
                     Name=ButRecharge
                     OnPressCode ^{
+                        00=SFT('PRESSED');
                         01=int moneyToRecharge = 0;
                         02=for(int i = 1;i <= 5; i = i + 1)
                         03 ^{
                             01=dword currentWeapon = ShipWeapon(Player(), i);
                             02=if(currentWeapon)
                             03 ^{
+                                00=SFT(MissilesToRearm(currentWeapon));
                                 01=int missilesToRearm = MissilesToRearm(currentWeapon);
                                 02=if(missilesToRearm)
                                 03 ^{
-                                    01=moneyToRecharge = moneyToRecharge + (CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel) * missilesToRearm);
+                                    01=moneyToRecharge = moneyToRecharge + (int(CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel())) * missilesToRearm);
                                 }
                             }
                         }
-                        04=if(moneyToRecharge <= ShipMoney(Player()))
-                        05 ^{
+                        04=SFT(moneyToRecharge);
+                        05=if(moneyToRecharge <= ShipMoney(Player()))
+                        06 ^{
                             01=ShipMoney(Player(), ShipMoney(Player()) - moneyToRecharge);
                         }
-                        06=else
-                        07 ^{
+                        07=else
+                        08 ^{
                             01=Sound('Sound.NoMoney');
                         }
                     }
