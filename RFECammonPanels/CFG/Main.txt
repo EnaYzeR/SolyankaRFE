@@ -114,7 +114,7 @@ ML ^{
                     Size=372,63
                 }
                 Name=PanelDown
-                Pos=332,570,-10
+                Pos=328,570,-10
                 Size=372,63
             }
         }
