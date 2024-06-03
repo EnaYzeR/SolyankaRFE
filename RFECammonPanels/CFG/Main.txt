@@ -68,13 +68,13 @@ ML ^{
                                 }
                             }
                         }
-                        04=if(moneyToRecharge < ShipMoney(Player()))
+                        04=if(moneyToRecharge <= ShipMoney(Player()))
                         05 ^{
                             ShipMoney(Player(), ShipMoney(Player()) - moneyToRecharge);
                         }
                         06=else
                         07 ^{
-                            Sound('Sound.NoMoney');
+                            01=Sound('Sound.NoMoney');
                         }
                     }
                     Pos=23,11,8
