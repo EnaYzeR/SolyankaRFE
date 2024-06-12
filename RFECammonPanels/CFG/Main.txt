@@ -34,34 +34,31 @@ ML ^{
     Hangar ^{
         Border=0,0,1024,768
         Panel ^{
-            Panel ^{
-            }
-            Panel ^{
-            }
-            Panel ^{
-            }
-            Panel ^{
-            }
-            Panel ^{
-            }
-            Panel ^{
-                GraphButton ^{
-                    Help=RFECammonPanels.Help.ButRecharge
-                    ImageDisable=GI,Bm.FormHangar2.2RechargeH
-                    ImageDown=GI,Bm.FormHangar2.2RechargeD
-                    ImageNormal=GI,Bm.FormHangar2.2RechargeN
-                    ImageNormalA=GI,Bm.FormHangar2.2RechargeA
-                    Kind=Disable
-                    KindHit=Rect
-                    Name=ButRecharge
-                    OnPressCode ^{
-                        01=int i = 1;
-                        02=dword currentWeapon = 0;
-                        03=int missilesToRearm = 0;
-                        04=int moneyToRecharge = 0;
-                        05=for(i = 1;i <= 5; i = i + 1)
-                        06 ^{
-                            currentWeapon = ShipWeapon(Player(), i);
+            OnKey ^{
+                01=if(KEY == 85)
+                02 ^{
+                    01=int i = 1;
+                    02=int status = 0;
+                    03=dword currentWeapon = 0;
+                    04=int missilesToRearm = 0;
+                    05=int moneyToRecharge = 0;
+                    
+                    06=for(i = 1; i <= 5; i = i + 1)
+                    07 ^{
+                        01=currentWeapon = ShipWeapon(Player(), i);
+                        02=if(currentWeapon)
+                        03 ^{
+                            01=if(MissilesToRearm(currentWeapon))
+                            02 ^{
+                                01=status = 1;
+                            }
+                        }
+                    }
+                    08=if(status)
+                    09 ^{
+                        01=for(i = 1;i <= 5; i = i + 1)
+                        02 ^{
+                            01=currentWeapon = ShipWeapon(Player(), i);
                             02=if(currentWeapon)
                             03 ^{
                                 01=missilesToRearm = MissilesToRearm(currentWeapon);
@@ -71,9 +68,8 @@ ML ^{
                                 }
                             }
                         }
-                        07=if(moneyToRecharge <= ShipMoney(Player()))
-                        08 ^{
-                            00=SFT(moneyToRecharge);
+                        03=if(moneyToRecharge <= ShipMoney(Player()))
+                        04 ^{
                             01=ShipMoney(Player(), ShipMoney(Player()) - moneyToRecharge);
                             02=for(i = 1;i <= 5; i = i + 1)
                             03 ^{
@@ -88,12 +84,101 @@ ML ^{
                                 }
                             }
                             04=InterfaceState('Hangar', 'ButRecharge', 2);
-                            05=Sound('Sound.Buy');
+                            05=InterfaceImage('Hangar', 'ChargeAnim', 'Style:Style.FormHangar2.ChargeAnim');
+                            06=UICheckElement('Hangar', 'ChargeAnim', 'CurFrame', 0);
+                            07=InterfaceState('Hangar', 'ChargeAnim', 1);
+                            08=Sound('Sound.Buy');
+                        }
+                        05=else
+                        06 ^{
+                            01=BlinkingWarning('Money');
+                            02=Sound('Sound.NoMoney');
+                        }
+                    }
+                }
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+                GraphButton ^{
+                    Help=RFECammonPanels.Help.ButRecharge
+                    ImageDisable=GI,Bm.FormHangar2.Buttons.RechargeH
+                    ImageDown=GI,Bm.FormHangar2.Buttons.RechargeD
+                    ImageNormal=GI,Bm.FormHangar2.Buttons.RechargeN
+                    ImageNormalA=GI,Bm.FormHangar2.Buttons.RechargeA
+                    Kind=Disable
+                    KindHit=Rect
+                    Name=ButRecharge
+                    OnPressCode ^{
+                        01=int i = 1;
+                        02=dword currentWeapon = 0;
+                        03=int missilesToRearm = 0;
+                        04=int moneyToRecharge = 0;
+                        05=for(i = 1;i <= 5; i = i + 1)
+                        06 ^{
+                            01=currentWeapon = ShipWeapon(Player(), i);
+                            02=if(currentWeapon)
+                            03 ^{
+                                01=missilesToRearm = MissilesToRearm(currentWeapon);
+                                02=if(missilesToRearm)
+                                03 ^{
+                                    01=moneyToRecharge = moneyToRecharge + (int(CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel())) * missilesToRearm);
+                                }
+                            }
+                        }
+                        07=if(moneyToRecharge <= ShipMoney(Player()))
+                        08 ^{
+                            01=ShipMoney(Player(), ShipMoney(Player()) - moneyToRecharge);
+                            02=for(i = 1;i <= 5; i = i + 1)
+                            03 ^{
+                                01=currentWeapon = ShipWeapon(Player(), i);
+                                02=if(currentWeapon)
+                                03 ^{
+                                    01=missilesToRearm = MissilesToRearm(currentWeapon);
+                                    02=if(missilesToRearm)
+                                    03 ^{
+                                        01=MissilesToRearm(currentWeapon, MissilesToRearm(currentWeapon));
+                                    }
+                                }
+                            }
+                            04=InterfaceState('Hangar', 'ButRecharge', 2);
+                            05=InterfaceImage('Hangar', 'ChargeAnim', 'Style:Style.FormHangar2.ChargeAnim');
+                            06=UICheckElement('Hangar', 'ChargeAnim', 'CurFrame', 0);
+                            07=InterfaceState('Hangar', 'ChargeAnim', 1);
+                            08=Sound('Sound.Buy');
                         }
                         09=else
                         10 ^{
-                            01=Sound('Sound.NoMoney');
+                            01=BlinkingWarning('Money');
+                            02=Sound('Sound.NoMoney');
                         }
+                    }
+                    OnMouseEnterCode ^{
+                        01=int i = 1;
+                        02=dword currentWeapon = 0;
+                        03=int missilesToRearm = 0;
+                        04=int moneyToRecharge = 0;
+                        05=for(i = 1;i <= 5; i = i + 1)
+                        06 ^{
+                            01=currentWeapon = ShipWeapon(Player(), i);
+                            02=if(currentWeapon)
+                            03 ^{
+                                01=missilesToRearm = MissilesToRearm(currentWeapon);
+                                02=if(missilesToRearm)
+                                03 ^{
+                                    01=moneyToRecharge = moneyToRecharge + (int(CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel())) * missilesToRearm);
+                                }
+                            }
+                        }
+                        07=UICheckElement('Hangar', 'ButRecharge', 'Help', Format(CT('RFECammonPanels.Help.ButRecharge'), 'COST', moneyToRecharge));
                     }
                     Pos=23,11,8
                     Size=63,37
@@ -150,13 +235,24 @@ ML ^{
                     Style=Style.GB.SoundNormal
                 }
                 Image ^{
-                    Image=GI,Bm.FormHangar2.2Bottom
+                    Image=GI,Bm.FormHangar2.Forms.Bottom
                     Pos=0,0,10
                     Size=372,63
                 }
                 Name=PanelDown
                 Pos=328,570,-10
                 Size=372,63
+            }
+            ChargeAnim ^{
+                GAI ^{
+                    Active=False
+                    FrameLoad=0
+                    Name=ChargeAnim
+                    Image=Bm.FormHangar2.Anims.ChargeAnim
+                    StopAfterOneCycle=True
+                    Pos=850,520,-4
+                    Size=48,48
+                }
             }
         }
     }
@@ -456,9 +552,14 @@ ML ^{
             }
         }
     }
+    Style ^{
+        FormHangar2 ^{
+            ChargeAnim  ^{
+                Stop=False
+            }    
+        }
+    }
 }
-
-
 Data ^{
 	Script ^{
 		RFECammonPanels=0,Script.RFECammonPanels

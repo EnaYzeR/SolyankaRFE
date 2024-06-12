@@ -1,6 +1,6 @@
 RFECammonPanels ^{
     Help ^{
-        ButRecharge=Зарядка ракеты/торпеды (<color=255,245,80>C</color>)
+        ButRecharge=Зарядка ракеты/торпеды (<color=255,245,80>U</color>) - COST cr.
     }
     MissilesToRearm ^{
         1=10
@@ -48,14 +48,19 @@ ShipInfo ^{
                 Name=OnHangarOpenedCallback
                 Description=NoShow
 
-				OnActCodeTypes=t_OnEnteringForm
+				OnActCodeTypes=t_OnEnteringForm, t_OnLeavingForm
 				OnActCode ^{
 					01=if(CurrentForm() == 'Hangar')
                     02 ^{
-                        01=int status = 0;
-                        02=for(int i = 1; i <= 5; i = i + 1)
-                        03 ^{
-                            01=dword currentWeapon = ShipWeapon(Player(), i);
+                        01=InterfaceImage('Hangar', 'ChargeAnim', 'Style:Style.FormHangar2.ChargeAnim');
+                        02=UICheckElement('Hangar', 'ChargeAnim', 'CurFrame', 0);
+                        03=InterfaceState('Hangar', 'ChargeAnim', 0);
+                        04=int i = 1;
+                        05=int status = 0;
+                        06=dword currentWeapon = 0;
+                        07=for(i = 1; i <= 5; i = i + 1)
+                        08 ^{
+                            01=currentWeapon = ShipWeapon(Player(), i);
                             02=if(currentWeapon)
                             03 ^{
                                 01=if(MissilesToRearm(currentWeapon))
@@ -64,12 +69,27 @@ ShipInfo ^{
                                 }
                             }
                         }
-                        04=if(status)
-                        05 ^{
-                            01=InterfaceState('Hangar', 'ButRecharge', 3);
+                        09=if(status)
+                        10 ^{
+                            01=int missilesToRearm = 0;
+                            02=int moneyToRecharge = 0;
+                            03=for(i = 1;i <= 5; i = i + 1)
+                            04 ^{
+                                01=currentWeapon = ShipWeapon(Player(), i);
+                                02=if(currentWeapon)
+                                03 ^{
+                                    01=missilesToRearm = MissilesToRearm(currentWeapon);
+                                    02=if(missilesToRearm)
+                                    03 ^{
+                                        01=moneyToRecharge = moneyToRecharge + (int(CT('RFECammonPanels.MissilesToRearm.'+GalaxyTechLevel())) * missilesToRearm);
+                                    }
+                                }
+                            }
+                            05=UICheckElement('Hangar', 'ButRecharge', 'Help', Format(CT('RFECammonPanels.Help.ButRecharge'), 'COST', moneyToRecharge));
+                            06=InterfaceState('Hangar', 'ButRecharge', 3);
                         }
-                        06=else
-                        07 ^{
+                        11=else
+                        12 ^{
                             01=InterfaceState('Hangar', 'ButRecharge', 2);
                         }
                     }

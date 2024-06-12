@@ -3,11 +3,18 @@ Bm ^{
         WindowCammonPanelTutorialBG=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\WindowCammonPanelTutorialBG.gi
     }
     FormHangar2 ^{
-        2Bottom=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2Bottom.gi
-        2RechargeH=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeH.gi
-        2RechargeD=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeD.gi
-        2RechargeN=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeN.gi
-        2RechargeA=Mods\SolyankaRFE\RFECammonPanels\DATA\Graphicks\2RechargeA.gi
+        Anims ^{
+            ChargeAnim=Mods\SolyankaRFE\RFECammonPanels\DATA\FormHangar2\Anims\ChargeAnim.gai
+        }
+        Buttons ^{
+            RechargeA=Mods\SolyankaRFE\RFECammonPanels\DATA\FormHangar2\Buttons\RechargeA.gi
+            RechargeD=Mods\SolyankaRFE\RFECammonPanels\DATA\FormHangar2\Buttons\RechargeD.gi
+            RechargeH=Mods\SolyankaRFE\RFECammonPanels\DATA\FormHangar2\Buttons\RechargeH.gi
+            RechargeN=Mods\SolyankaRFE\RFECammonPanels\DATA\FormHangar2\Buttons\RechargeN.gi
+        }
+        Forms ^{
+            Bottom=Mods\SolyankaRFE\RFECammonPanels\DATA\FormHangar2\Forms\Bottom.gi
+        }
     }
 }
 Graphicks ^{
