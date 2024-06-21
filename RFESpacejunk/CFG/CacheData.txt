@@ -46,6 +46,11 @@ Bm ^{
         PiratePeople=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PiratePeople.gi
         SubFactionKlissan=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Klissan.gi
         Terron=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Terron.gi
+        SubFactionPlayerMercsFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PlayerMercs.gi
+        SubFactionAtlantFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Atlant.gi
+        SubFactionFaeyangelionFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Faeyangelion.gi
+        SubFactionFreelancersFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\None.gi
+        SubFactionRedAxesFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\RedAxes.gi
     }
 }
 Script ^{

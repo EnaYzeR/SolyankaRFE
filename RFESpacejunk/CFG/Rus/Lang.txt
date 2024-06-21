@@ -181,7 +181,7 @@ Script ^{
                             01=int result;
                             02=if(PlanetOwner(object) != None && PlanetOwner(object) != Kling)
                             03 ^{
-                                01=result = PlanetEco(object);
+                                01=result = PlanetGov(object);
                             }
                             04=else
                             05 ^{
@@ -195,7 +195,7 @@ Script ^{
                             01=int result;
                             02=if(PlanetOwner(object) != None && PlanetOwner(object) != Kling)
                             03 ^{
-                                01=result = PlanetGov(object);
+                                01=result = PlanetEco(object);
                             }
                             04=else
                             05 ^{
@@ -346,7 +346,14 @@ Script ^{
                     01=if(i < items_cnt) GSJ_objects[i] = itemArray[i];
                     02=else GSJ_objects[i] = -1;
                 }
-                11=GSJ_total_pages = max(min((items_cnt - 1) / GSJ_lines_cnt, GSJ_pages_cnt - 1), 0);
+                11=if(items_cnt == 0)
+                12 ^{
+                    01=GSJ_total_pages = max(min((items_cnt - 1) / min(GSJ_lines_cnt, 1), GSJ_pages_cnt - 1), 0);
+                }
+                13=else
+                14 ^{
+                    01=GSJ_total_pages = 0;
+                }
             }
             UpdatePage ^{
                 01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.'+GSJ_type);
