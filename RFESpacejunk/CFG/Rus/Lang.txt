@@ -454,6 +454,11 @@ Script ^{
                 6=<color=0,0,0>[]</color>
                 7=<color=255,255,255>[]</color>
                 AMod_Invaders=<color=255,127,0>[]</color>
+                SubFactionAtlantFixedStanding=<color=152,206,84>[]</color>
+                SubFactionFaeyangelionFixedStanding=<color=178,132,189>[]</color>
+                SubFactionFreelancersFixedStanding=<color=222,222,222>[]</color>
+                SubFactionRedAxesFixedStanding=<color=128,0,0>[]</color>
+                SubFactionPlayerMercsFixedStanding=<color=0,200,230>[]</color>
                 Empty=<color=0,0,0>--</color>
                 Kling ^{
                     0=<color=255,0,0>]</color>
