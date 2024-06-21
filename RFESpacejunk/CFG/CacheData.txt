@@ -1,0 +1,53 @@
+Bm ^{
+    FormStarMap ^{
+        ClosedPanel=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\ClosedPanel.gi
+        ItemCenterA=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\ItemCenterA.gi
+        ItemCenterD=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\ItemCenterD.gi
+        ItemCenterN=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\ItemCenterN.gi
+        OpenedPanel=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\OpenedPanel.gi
+        OpenedPanelButton=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\OpenedPanelButton.gi
+        bfld=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\bfld.gi
+        fld=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\fld.gi
+        mony=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\mony.gi
+        shwCloseButtonA=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\shwCloseButtonA.gi
+        shwCloseButtonD=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\shwCloseButtonD.gi
+        shwCloseButtonN=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\shwCloseButtonN.gi
+        shwOpenButtonA=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\shwOpenButtonA.gi
+        shwOpenButtonD=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\shwOpenButtonD.gi
+        shwOpenButtonN=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\shwOpenButtonN.gi
+        sjBigPanel=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjBigPanel.gi
+        sjPageLeftA=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageLeftA.gi
+        sjPageLeftD=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageLeftD.gi
+        sjPageLeftH=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageLeftH.gi
+        sjPageLeftN=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageLeftN.gi
+        sjPageRightA=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageRightA.gi
+        sjPageRightD=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageRightD.gi
+        sjPageRightH=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageRightH.gi
+        sjPageRightN=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPageRightN.gi
+        sjPanelCenter=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\sjPanelCenter.gi
+        wght=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\wght.gi
+    }
+    SmallOwners ^{
+        Ark=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Ark.gi
+        Blazer=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Blazer.gi
+        Fei=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Fei.gi
+        Gaal=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Gaal.gi
+        Keller=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Keller.gi
+        Klissan=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Klissan.gi
+        Maloc=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Maloc.gi
+        None=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\None.gi
+        Peleng=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Peleng.gi
+        People=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\People.gi
+        Pirate=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Pirate.gi
+        PirateFei=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PirateFei.gi
+        PirateGaal=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PirateGaal.gi
+        PirateMaloc=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PirateMaloc.gi
+        PiratePeleng=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PiratePeleng.gi
+        PiratePeople=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\PiratePeople.gi
+        SubFactionKlissan=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Klissan.gi
+        Terron=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Terron.gi
+    }
+}
+Script ^{
+    RFESpacejunk=Mods\SolyankaRFE\RFESpacejunk\DATA\Script\RFESpacejunk.scr
+}

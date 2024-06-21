@@ -1,15 +1,15 @@
 {
   "FileID":  573785173,
   "FileVersion":  8,
-  "ViewPos.x":  -743,
-  "ViewPos.y":  -358,
-  "ScriptName":  "RFEUtilities",
-  "ScriptFileOut":  "Z:\\home\\user\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFECammonPanels\\DATA\\Script\\RFECammonPanels.scr",
-  "ScriptTextOut":  "Z:\\home\\user\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFECammonPanels\\DATA\\Script\\RFECammonPanels.txt",
-  "GraphPoint.Count":  8,
-  "GraphLink.Count":  4,
+  "ViewPos.x":  21,
+  "ViewPos.y":  -3,
+  "ScriptName":  "RFESpacejunk",
+  "ScriptFileOut":  "Z:\\home\\lorki\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFESpacejunk\\Data\\Script\\RFESpacejunk.scr",
+  "ScriptTextOut":  "Z:\\home\\lorki\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFESpacejunk\\Data\\Script\\RFESpacejunk.txt",
+  "GraphPoint.Count":  17,
+  "GraphLink.Count":  5,
   "GraphRectText.Count":  0,
-  "Variables.Count":  0,
+  "Variables.Count":  8,
   "Stars.Count":  1,
   "Planets.Count":  1,
   "Ships.Count":  1,
@@ -22,7 +22,7 @@
   "DialogMessages.Count":  0,
   "DialogAnswers.Count":  0,
   "Operations.Count":  3,
-  "Statements.Count":  0,
+  "Statements.Count":  1,
   "Loops.Count":  0,
   "Visual.Objects":  
   [
@@ -35,7 +35,7 @@
           "Pos.x":  0,
           "Pos.y":  20,
           "Parent":  1,
-          "#":  2,
+          "#":  3,
           "Owner":  62,
           "Group.Type":  126,
           "CntShipMin":  1,
@@ -64,25 +64,8 @@
         {
           "Type":  "Top",
           "Name":  "",
-          "Pos.x":  190,
-          "Pos.y":  70,
-          "Parent":  -1,
-          "#":  4,
-          "Total.Lines":  4,
-          "Code.Type":  "Turn",
-          "Code":          
-          [
-              "if(!ShipFindCustomShipInfoByType(Player(),'RFECammonPanels_OnHangarOpenedInfo') == -1)",
-              "{",
-              "    ShipAddCustomShipInfo(Player(),'RFECammonPanels_OnHangarOpenedInfo');",
-              "}"          
-          ]        
-        },
-        {
-          "Type":  "Top",
-          "Name":  "",
-          "Pos.x":  150,
-          "Pos.y":  70,
+          "Pos.x":  730,
+          "Pos.y":  400,
           "Parent":  -1,
           "#":  5,
           "Total.Lines":  1,
@@ -95,15 +78,29 @@
         {
           "Type":  "Top",
           "Name":  "",
-          "Pos.x":  170,
-          "Pos.y":  70,
+          "Pos.x":  750,
+          "Pos.y":  400,
           "Parent":  -1,
           "#":  6,
           "Total.Lines":  1,
           "Code.Type":  "Init",
           "Code":          
           [
-              "ShipAddCustomShipInfo(Player(),'RFECammonPanels_OnHangarOpenedInfo');"          
+              "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.InitCode'));"          
+          ]        
+        },
+        {
+          "Type":  "Top",
+          "Name":  "",
+          "Pos.x":  0,
+          "Pos.y":  20,
+          "Parent":  8,
+          "#":  7,
+          "Total.Lines":  1,
+          "Code.Type":  "Turn",
+          "Code":          
+          [
+              "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.AMod_Spacejunk.TurnCode'));"          
           ]        
         }      
       ],
@@ -130,10 +127,10 @@
         {
           "Type":  "TStarShip",
           "Name":  "",
-          "Pos.x":  40,
-          "Pos.y":  70,
+          "Pos.x":  600,
+          "Pos.y":  400,
           "Parent":  -1,
-          "#":  7,
+          "#":  2,
           "Count":  1,
           "Owner":  62,
           "Ship.Type":  126,
@@ -161,12 +158,29 @@
           "Name":  "InitStar",
           "Pos.x":  0,
           "Pos.y":  20,
-          "Parent":  7,
+          "Parent":  2,
           "#":  0,
           "Constellation":  0,
           "Priority":  0,
           "NoKling":  false,
           "NoComeKling":  false        
+        }      
+      ],
+      "Statements":      
+      [
+        {
+          "Type":  "Tif",
+          "Name":  "",
+          "Pos.x":  770,
+          "Pos.y":  400,
+          "Parent":  -1,
+          "#":  8,
+          "Total.Lines":  1,
+          "Code.Type":  "Turn",
+          "Code":          
+          [
+              "ShipInNormalSpace(Player())"          
+          ]        
         }      
       ],
       "States":      
@@ -176,8 +190,8 @@
           "Name":  "PlayerState",
           "Pos.x":  0,
           "Pos.y":  20,
-          "Parent":  2,
-          "#":  3,
+          "Parent":  3,
+          "#":  4,
           "Move":  0,
           "MoveObj":  -1,
           "Attack.Count":  0,
@@ -189,6 +203,97 @@
           "EUnique":  "",
           "EMsg":  ""        
         }      
+      ],
+      "Variables":      
+      [
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_pages_cnt",
+          "Pos.x":  730,
+          "Pos.y":  450,
+          "Parent":  -1,
+          "#":  9,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_lines_cnt",
+          "Pos.x":  730,
+          "Pos.y":  470,
+          "Parent":  -1,
+          "#":  10,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_total_pages",
+          "Pos.x":  730,
+          "Pos.y":  510,
+          "Parent":  -1,
+          "#":  11,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_type",
+          "Pos.x":  730,
+          "Pos.y":  570,
+          "Parent":  -1,
+          "#":  12,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_sort_type",
+          "Pos.x":  730,
+          "Pos.y":  590,
+          "Parent":  -1,
+          "#":  13,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_objects_cnt",
+          "Pos.x":  730,
+          "Pos.y":  530,
+          "Parent":  -1,
+          "#":  14,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_current_page",
+          "Pos.x":  730,
+          "Pos.y":  490,
+          "Parent":  -1,
+          "#":  15,
+          "Var.Type":  "Int",
+          "Init":  "",
+          "Global":  true        
+        },
+        {
+          "Type":  "TVar",
+          "Name":  "GSJ_objects",
+          "Pos.x":  730,
+          "Pos.y":  550,
+          "Parent":  -1,
+          "#":  16,
+          "Var.Type":  "Unknown",
+          "Init":  "",
+          "Global":  true        
+        }      
       ]    
     }  
   ],
@@ -196,28 +301,35 @@
   [
     {
       "Type":  "TGraphLink",
-      "Begin":  2,
-      "End":  3,
-      "Nom":  0,
-      "Arrow":  true    
-    },
-    {
-      "Type":  "TGraphLink",
-      "Begin":  2,
+      "Begin":  3,
       "End":  1,
       "Nom":  0,
       "Arrow":  true    
     },
     {
       "Type":  "TGraphLink",
-      "Begin":  1,
+      "Begin":  3,
+      "End":  4,
+      "Nom":  0,
+      "Arrow":  true    
+    },
+    {
+      "Type":  "TGraphLink",
+      "Begin":  2,
       "End":  0,
       "Nom":  0,
       "Arrow":  true    
     },
     {
       "Type":  "TGraphLink",
-      "Begin":  7,
+      "Begin":  8,
+      "End":  7,
+      "Nom":  0,
+      "Arrow":  true    
+    },
+    {
+      "Type":  "TGraphLink",
+      "Begin":  1,
       "End":  0,
       "Nom":  0,
       "Arrow":  true    

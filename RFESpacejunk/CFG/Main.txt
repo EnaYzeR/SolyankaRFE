@@ -1,0 +1,1891 @@
+BV ^{
+    OnLoad ^{
+        sjAddTypesPanelInfos ^{
+            01=if(ShipFindCustomShipInfoByType(Player(),'sjAddTypesPanelInfos')<0)ShipAddCustomShipInfo(Player(),'sjAddTypesPanelInfos','NoShow');
+        }
+    }
+    OnStart ^{
+        sjAddTypesPanelInfos ^{
+            01=if(ShipFindCustomShipInfoByType(Player(),'sjAddTypesPanelInfos')<0)ShipAddCustomShipInfo(Player(),'sjAddTypesPanelInfos','NoShow');
+        }
+    }
+}
+Data ^{
+    Script ^{
+        RFESpacejunk=1,Script.RFESpacejunk
+    }
+}
+ML ^{
+    StarMap ^{
+        Panel ^{
+            SpacejunkPanel ^{
+                Panel ^{
+                    Active=True
+                    GraphButton ^{
+                        ImageDown=GI,Bm.FormStarMap.OpenedPanelButton
+                        ImageNormal=GI,Bm.FormStarMap.OpenedPanelButton
+                        ImageNormalA=GI,Bm.FormStarMap.OpenedPanelButton
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=False
+                        Name=sjOpenPanelButton
+                        OnPressCode ~{
+                            01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.OpenPanel'));
+                        }
+                        Pos=102,55,-4
+                        Size=16,537
+                        Style=Style.GB.SoundNormal
+                    }
+                    GraphButton ^{
+                        Active=True
+                        ImageDown=GI,Bm.FormStarMap.shwOpenButtonD
+                        ImageNormal=GI,Bm.FormStarMap.shwOpenButtonN
+                        ImageNormalA=GI,Bm.FormStarMap.shwOpenButtonA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=False
+                        Name=sjShwLeftPanel
+                        OnPressCode ^{
+                            01=InterfacePos('StarMap','sjMainPanel',90,0,0);
+                            02=InterfaceState('StarMap','sjShwLeftPanel',0);
+                            03=InterfaceState('StarMap','sjHideLeftPanel',1);
+                        }
+                        Pos=88,594,-7
+                        Size=24,38
+                        Style=Style.GB.SoundNormal
+                    }
+                    GraphButton ^{
+                        Active=False
+                        ImageDown=GI,Bm.FormStarMap.shwCloseButtonD
+                        ImageNormal=GI,Bm.FormStarMap.shwCloseButtonN
+                        ImageNormalA=GI,Bm.FormStarMap.shwCloseButtonA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=False
+                        Name=sjHideLeftPanel
+                        OnPressCode ^{
+                            00=InterfacePos('StarMap','sjMainPanel',0,0,0);
+                            01=InterfaceState('StarMap','sjShwLeftPanel',1);
+                            02=InterfaceState('StarMap','sjHideLeftPanel',0);
+                        }
+                        Pos=88,594,-7
+                        Size=24,38
+                        Style=Style.GB.SoundNormal
+                    }
+                    Image ^{
+                        Image=GI,Bm.FormStarMap.sjBigPanel
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Pos=0,11,-3
+                        Size=120,628
+                    }
+                    Name=sjMainPanel
+                    Panel ^{
+                        Active=True
+                        Label ^{
+                            AlignX=Left
+                            AlignY=Center
+                            Font=Font.2SmallBold
+                            Pos=4,8,-1
+                            Size=80,40
+                            Text=Script.RFESpacejunk.Text.othPanelLabels.Name
+                            TextColor=255,255,255
+                            WordWrap=True
+                        }
+                        Name=sjAddTypesPanel
+                        Panel ^{
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.wght
+                                    Pos=5,28,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.mony
+                                    Pos=5,58,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,25,0
+                                    Size=75,24
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,55,0
+                                    Size=75,24
+                                }
+                                Label ^{
+                                    AlignX=Left
+                                    AlignY=Center
+                                    Font=Font.2Ranger
+                                    Pos=4,0,-1
+                                    Size=75,24
+                                    Text=Script.RFESpacejunk.Text.othPanelLabels.Goods
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesGdsCnt
+                                    Pos=25,25,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesGdsCst
+                                    Pos=25,55,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Name=gdsPanel
+                                Pos=0,10,0
+                                Size=100,80
+                            }
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.wght
+                                    Pos=5,28,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.mony
+                                    Pos=5,58,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,25,0
+                                    Size=75,24
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,55,0
+                                    Size=75,24
+                                }
+                                Label ^{
+                                    AlignX=Left
+                                    AlignY=Center
+                                    Font=Font.2Ranger
+                                    Pos=4,0,-1
+                                    Size=75,24
+                                    Text=Script.RFESpacejunk.Text.othPanelLabels.Weapons
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesWpnCnt
+                                    Pos=25,25,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesWpnCst
+                                    Pos=25,55,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Name=wpnPanel
+                                Pos=0,85,0
+                                Size=100,80
+                            }
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.wght
+                                    Pos=5,28,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.mony
+                                    Pos=5,58,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,25,0
+                                    Size=75,24
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,55,0
+                                    Size=75,24
+                                }
+                                Label ^{
+                                    AlignX=Left
+                                    AlignY=Center
+                                    Font=Font.2Ranger
+                                    Pos=4,0,-1
+                                    Size=90,24
+                                    Text=Script.RFESpacejunk.Text.othPanelLabels.Equipments
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesEqpCnt
+                                    Pos=25,25,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesEqpCst
+                                    Pos=25,55,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Name=eqpPanel
+                                Pos=0,160,0
+                                Size=100,80
+                            }
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.wght
+                                    Pos=5,28,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.mony
+                                    Pos=5,58,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,25,0
+                                    Size=75,24
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,55,0
+                                    Size=75,24
+                                }
+                                Label ^{
+                                    AlignX=Left
+                                    AlignY=Center
+                                    Font=Font.2Ranger
+                                    Pos=4,0,-1
+                                    Size=75,24
+                                    Text=Script.RFESpacejunk.Text.othPanelLabels.Arts
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesArtCnt
+                                    Pos=25,25,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesArtCst
+                                    Pos=25,55,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Name=artPanel
+                                Pos=0,235,0
+                                Size=100,80
+                            }
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.wght
+                                    Pos=5,28,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.mony
+                                    Pos=5,58,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,25,0
+                                    Size=75,24
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,55,0
+                                    Size=75,24
+                                }
+                                Label ^{
+                                    AlignX=Left
+                                    AlignY=Center
+                                    Font=Font.2Ranger
+                                    Pos=4,0,-1
+                                    Size=75,24
+                                    Text=Script.RFESpacejunk.Text.othPanelLabels.Nods
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesNodCnt
+                                    Pos=25,25,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesNodCst
+                                    Pos=25,55,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Name=nodPanel
+                                Pos=0,310,0
+                                Size=100,80
+                            }
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.wght
+                                    Pos=5,28,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.mony
+                                    Pos=5,58,0
+                                    Size=17,17
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,25,0
+                                    Size=75,24
+                                }
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.fld
+                                    Pos=25,55,0
+                                    Size=75,24
+                                }
+                                Label ^{
+                                    AlignX=Left
+                                    AlignY=Center
+                                    Font=Font.2Ranger
+                                    Pos=4,0,-1
+                                    Size=75,24
+                                    Text=Script.RFESpacejunk.Text.othPanelLabels.Others
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesOthCnt
+                                    Pos=25,25,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjAddTypesOthCst
+                                    Pos=25,55,-1
+                                    Size=75,24
+                                    Text=1000
+                                    TextColor=255,255,255
+                                    WordWrap=False
+                                }
+                                Name=othPanel
+                                Pos=0,385,0
+                                Size=100,80
+                            }
+                            Pos=0,30,-6
+                            Size=150,628
+                        }
+                        Pos=0,0,-6
+                        Size=600,628
+                    }
+                    Panel ^{
+                        Active=False
+                        GraphButton ^{
+                            ImageDown=GI,Bm.FormStarMap.OpenedPanelButton
+                            ImageNormal=GI,Bm.FormStarMap.OpenedPanelButton
+                            ImageNormalA=GI,Bm.FormStarMap.OpenedPanelButton
+                            Kind=Normal
+                            KindHit=Rect
+                            MouseBlocking=True
+                            MouseBlockingTest=False
+                            Name=sjClosePanelButton
+                            OnPressCode ~{
+                                0=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.ClosePanel'));
+                            }
+                            Pos=507,44,0
+                            Size=16,537
+                            Style=Style.GB.SoundNormal
+                        }
+                        Image ^{
+                            Image=GI,Bm.FormStarMap.sjPanelCenter
+                            MouseBlocking=True
+                            MouseBlockingTest=True
+                            Pos=0,0,0
+                            Size=520,628
+                        }
+                        Name=sjInfoPanel
+                        Panel ^{
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2Ranger
+                                Name=sjItemLabel1
+                                Pos=40,4,0
+                                Size=200,20
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2Ranger
+                                Name=sjItemLabel2
+                                Pos=205,4,0
+                                Size=100,20
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2Ranger
+                                Name=sjItemLabel3
+                                Pos=300,4,0
+                                Size=80,20
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2Ranger
+                                Name=sjItemLabel4
+                                Pos=380,4,0
+                                Size=80,20
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItemInfo
+                            Pos=30,2,-4
+                            Size=460,25
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem0Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 0);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem0Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem0Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem0Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem0Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem0
+                            Pos=30,23,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem1Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 1);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem1Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem1Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem1Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem1Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem1
+                            Pos=30,51,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem2Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 2);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem2Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem2Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem2Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem2Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem2
+                            Pos=30,79,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem3Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 3);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem3Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem3Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem3Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem3Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem3
+                            Pos=30,107,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem4Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 4);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem4Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem4Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem4Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem4Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem4
+                            Pos=30,135,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem5Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 5);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem5Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem5Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem5Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem5Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem5
+                            Pos=30,163,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem6Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 6);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem6Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem6Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem6Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem6Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem6
+                            Pos=30,191,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem7Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 7);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem7Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem7Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem7Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem7Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem7
+                            Pos=30,219,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem8Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 8);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem8Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem8Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem8Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem8Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem8
+                            Pos=30,247,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem9Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 9);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem9Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem9Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem9Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem9Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem9
+                            Pos=30,275,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem10Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 10);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem10Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem10Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem10Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem10Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem10
+                            Pos=30,303,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem11Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 11);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem11Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem11Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem11Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem11Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem11
+                            Pos=30,331,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem12Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 12);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem12Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem12Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem12Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem12Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem12
+                            Pos=30,359,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem13Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 13);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem13Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem13Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem13Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem13Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem13
+                            Pos=30,387,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem14Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 14);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem14Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem14Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem14Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem14Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem14
+                            Pos=30,415,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem15Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 15);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem15Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem15Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem15Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem15Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem15
+                            Pos=30,443,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem16Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 16);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem16Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem16Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem16Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem16Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem16
+                            Pos=30,471,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem17Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 17);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem17Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem17Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem17Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem17Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem17
+                            Pos=30,499,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem18Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 18);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem18Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem18Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem18Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem18Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem18
+                            Pos=30,527,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.ItemCenterD
+                                ImageNormal=GI,Bm.FormStarMap.ItemCenterN
+                                ImageNormalA=GI,Bm.FormStarMap.ItemCenterA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjItem19Button0
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.Center'), 'center_button_n', 19);
+                                }
+                                Pos=5,5,0
+                                Size=23,24
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Name=sjItem19Image2
+                                Pos=240,4,0
+                                Size=30,25
+                            }
+                            Label ^{
+                                AlignX=Left
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem19Label1
+                                Pos=40,4,0
+                                Size=200,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem19Label3
+                                Pos=300,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2SmallBold
+                                Name=sjItem19Label4
+                                Pos=380,4,0
+                                Size=80,25
+                                Text=
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Name=sjItem19
+                            Pos=30,555,-4
+                            Size=460,28
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                AlignY=Center
+                                ImageDown=GI,Bm.FormStarMap.sjPageLeftD
+                                ImageNormal=GI,Bm.FormStarMap.sjPageLeftN
+                                ImageNormalA=GI,Bm.FormStarMap.sjPageLeftA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjObjTypeDec
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.ObjTypeDec'));
+                                }
+                                Pos=6,7
+                                Size=15,11
+                                Style=Style.GB.SoundNormal
+                            }
+                            GraphButton ^{
+                                AlignY=Center
+                                ImageDown=GI,Bm.FormStarMap.sjPageRightD
+                                ImageNormal=GI,Bm.FormStarMap.sjPageRightN
+                                ImageNormalA=GI,Bm.FormStarMap.sjPageRightA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjObjTypeInc
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.ObjTypeInc'));
+                                }
+                                Pos=120,7
+                                Size=15,11
+                                Style=Style.GB.SoundNormal
+                            }
+                            Name=sjObjControlPanel
+                            Panel ^{
+                                AlignY=Center
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.bfld
+                                    Pos=0,0,-8
+                                    Size=98,24
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjObjTypeLabel
+                                    Pos=0,0,-9
+                                    Size=98,24
+                                    Text=
+                                    TextColor=255,255,255
+                                    WordWrap=True
+                                }
+                                Pos=22,0,-7
+                                Size=98,24
+                            }
+                            Pos=40,593,-6
+                            Size=140,30
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                AlignY=Center
+                                ImageDown=GI,Bm.FormStarMap.sjPageLeftD
+                                ImageNormal=GI,Bm.FormStarMap.sjPageLeftN
+                                ImageNormalA=GI,Bm.FormStarMap.sjPageLeftA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjSortTypeDec
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.SortTypeDec'));
+                                }
+                                Pos=6,7
+                                Size=15,11
+                                Style=Style.GB.SoundNormal
+                            }
+                            GraphButton ^{
+                                AlignY=Center
+                                ImageDown=GI,Bm.FormStarMap.sjPageRightD
+                                ImageNormal=GI,Bm.FormStarMap.sjPageRightN
+                                ImageNormalA=GI,Bm.FormStarMap.sjPageRightA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjSortTypeInc
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.SortTypeInc'));
+                                }
+                                Pos=120,7
+                                Size=15,11
+                                Style=Style.GB.SoundNormal
+                            }
+                            Name=sjSortControlPanel
+                            Panel ^{
+                                Image ^{
+                                    Image=GI,Bm.FormStarMap.bfld
+                                    Pos=0,0,-8
+                                    Size=98,24
+                                }
+                                Label ^{
+                                    AlignX=Center
+                                    AlignY=Center
+                                    Font=Font.2SmallBold
+                                    Name=sjSortTypeLabel
+                                    Pos=0,0,-9
+                                    Size=98,24
+                                    Text=
+                                    TextColor=255,255,255
+                                    WordWrap=True
+                                }
+                                Pos=22,0,-7
+                                Size=98,24
+                            }
+                            Pos=350,593,-6
+                            Size=140,30
+                        }
+                        Panel ^{
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.sjPageLeftD
+                                ImageNormal=GI,Bm.FormStarMap.sjPageLeftN
+                                ImageNormalA=GI,Bm.FormStarMap.sjPageLeftA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjPageButtonL
+                                OnPressCode ~{
+                                    0=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.PageLeft'));
+                                }
+                                Pos=0,0,0
+                                Size=15,11
+                                Style=Style.GB.SoundNormal
+                            }
+                            GraphButton ^{
+                                ImageDown=GI,Bm.FormStarMap.sjPageRightD
+                                ImageNormal=GI,Bm.FormStarMap.sjPageRightN
+                                ImageNormalA=GI,Bm.FormStarMap.sjPageRightA
+                                Kind=Normal
+                                KindHit=Rect
+                                MouseBlocking=True
+                                MouseBlockingTest=False
+                                Name=sjPageButtonR
+                                OnPressCode ~{
+                                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.PageRight'));
+                                }
+                                Pos=65,0,0
+                                Size=15,11
+                                Style=Style.GB.SoundNormal
+                            }
+                            Image ^{
+                                Image=GI,Bm.FormStarMap.sjPageLeftH
+                                Pos=0,0,0
+                                Size=15,11
+                            }
+                            Image ^{
+                                Image=GI,Bm.FormStarMap.sjPageRightH
+                                Pos=65,0,0
+                                Size=15,11
+                            }
+                            Label ^{
+                                AlignX=Center
+                                AlignY=Center
+                                Font=Font.2Small
+                                Name=sjPageText
+                                Pos=20,0,0
+                                Size=40,11
+                                Text=1
+                                TextColor=255,255,255
+                                WordWrap=False
+                            }
+                            Pos=220,600,-3
+                            Size=80,11
+                        }
+                        Pos=90,11,-2
+                        Size=530,628
+                    }
+                    Pos=-90,20,-15
+                    PosAutoCorrection=True
+                    PosAutoCorrectionXCoef=0
+                    PosAutoCorrectionYCoef=0.5
+                    Size=670,640
+                }
+            }
+        }
+    }
+}

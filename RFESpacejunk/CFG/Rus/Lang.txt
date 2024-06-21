@@ -1,0 +1,575 @@
+Script ^{
+    RFESpacejunk ^{
+        Functions ^{
+            Items ^{
+                Center ^{
+                    01=dword item = IdToItem(object_id);
+                    02=StarMapCenterView(CoordX(item), CoordY(item), 1);
+                }
+                Display ^{
+                    01=str text;
+                    02=if(object_id != -1)
+                    03 ^{
+                        01=str name; str cost; str size; str TL; str race;
+                        02=dword object = IdToItem(object_id);
+                        03=name = ItemFullName(object);
+                        04=if (count(DeleteTags(name)) > 20)
+                        05 ^{
+                            01=name = substr(DeleteTags(name), 0, 20) + '...';
+                        }
+                        06=cost = ''+ItemCost(object)+' cr.';
+                        07=size = ''+ItemSize(object)+' т';
+                        09=TL = ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Utils.ItemTechLevel'), 'item', object, 'result');
+                        10=if(TL == '')
+                        11 ^{
+                            01=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name);
+                        }
+                        12=else
+                        13 ^{
+                            01=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name + ' ('+TL+')');
+                        }
+                        14=if(ItemType(object) > 7)
+                        15 ^{
+                            01=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + ItemOwnerString(object));
+                        }
+                        16=else
+                        17 ^{
+                            01=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.None');
+                        }
+                        18=InterfaceText('StarMap', 'sjItem' + index + 'Label3', cost);
+                        19=InterfaceText('StarMap', 'sjItem' + index + 'Label4', size);
+                    }
+                    04=else
+                    05 ^{
+                        01=InterfaceText('StarMap', 'sjItem' + index + 'Label1', '');
+                        02=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.None');
+                        03=InterfaceText('StarMap', 'sjItem' + index + 'Label3', '');
+                        04=InterfaceText('StarMap', 'sjItem' + index + 'Label4', '');
+                    }
+                    06=InterfaceState('StarMap', 'sjItem' + index + 'Button0', object_id != -1);
+                }
+                InfoLabels ^{
+                    1=тип объекта
+                    2=раса
+                    3=цена
+                    4=вес
+                }
+                SortKey ^{
+                    0 ^{
+                        Code ^{
+                            01=int result = -ItemCost(object);
+                        }
+                        Description=цена
+                    }
+                    1 ^{
+                        Code ^{
+                            01=int result = -ItemType(object);
+                        }
+                        Description=тип
+                    }
+                    2 ^{
+                        Code ^{
+                            01=int result = -ItemLevel(object);
+                        }
+                        Description=ТУ
+                    }
+                    3 ^{
+                        Code ^{
+                            01=int result = -(1000 * ItemCost(object)) / (ItemSize(object) + 1);
+                        }
+                        Description=цена/вес
+                    }
+                    4 ^{
+                        Code ^{
+                            01=int result = -ItemSize(object);
+                        }
+                        Description=вес
+                    }
+                    5 ^{
+                        Code ^{
+                            01=int result = EqSpecial(object);
+                        }
+                        Description=акрин
+                    }
+                    Count=6
+                }
+                TypeDescription=предметы
+                Update ^{
+                    01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.' + GSJ_type);
+                    02=unknown itemArray = newarray(1);
+                    03=unknown sort_key_array = newarray(1);
+                    04=for(int i = 0; i < StarItems(ShipStar(Player())); i = i + 1)
+                    05 ^{
+                        01=dword item = StarItems(ShipStar(Player()),i);
+                        02=if(ShipRadarRange(Player()) < Dist(Player(),item)) continue;
+                        03=ArrayAdd(itemArray, Id(item));
+                        04=ArrayAdd(sort_key_array, ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.' + objtype + '.SortKey.' + GSJ_sort_type + '.Code'), 'object', item, 'result'));
+                    }
+                    06=ArrayDelete(itemArray, 0);
+                    07=ArrayDelete(sort_key_array, 0);
+                    08=ArraySort(sort_key_array, itemArray);
+                    09=free(sort_key_array);
+                }
+            }
+            Planets ^{
+                Center ^{
+                    01=dword planet = IdToPlanet(object_id);
+                    02=StarMapCenterView(CoordX(planet), CoordY(planet), 1);
+                }
+                Display ^{
+                    01=str text;
+                    02=if(object_id != -1)
+                    03 ^{
+                        01=str name;
+                        02=dword object = IdToPlanet(object_id);
+                        03=name = Name(object);
+                        04=if(count(DeleteTags(name)) > 25)
+                        05 ^{
+                            01=name = substr(DeleteTags(name), 0, 25) + '...';
+                        }
+                        08=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name);
+                        09=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + PlanetOwnerString(object));
+                        10=if(PlanetOwner(object) != Kling && PlanetOwner(object) != None)
+                        11 ^{
+                            01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', CT('Goverment.Type.' + PlanetGov(object)));
+                            02=InterfaceText('StarMap', 'sjItem' + index + 'Label4', CT('Economy.ShortName.' + PlanetEco(object)));
+                        }
+                        12=else
+                        13 ^{
+                            01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', '');
+                            02=InterfaceText('StarMap', 'sjItem' + index + 'Label4', '');
+                        }
+                    }
+                    04=else
+                    05 ^{
+                        01=InterfaceText('StarMap', 'sjItem' + index + 'Label1', '');
+                        02=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.None');
+                        03=InterfaceText('StarMap', 'sjItem' + index + 'Label3', '');
+                        04=InterfaceText('StarMap', 'sjItem' + index + 'Label4', '');
+                    }
+                    06=InterfaceState('StarMap', 'sjItem' + index + 'Button0', object_id != -1);
+                }
+                InfoLabels ^{
+                    1=название
+                    2=под контролем
+                    3=политика
+                    4=экономика
+                }
+                SortKey ^{
+                    0 ^{
+                        Code ^{
+                            01=int result;
+                            02=if(PlanetOwner(object) != None)
+                            03 ^{
+                                01=result = PlanetRace(object);
+                            }
+                            04=else
+                            05 ^{
+                                01=result = 10;
+                            }
+                        }
+                        Description=раса
+                    }
+                    1 ^{
+                        Code ^{
+                            01=int result = PlanetOwner(object);
+                        }
+                        Description=фракция
+                    }
+                    2 ^{
+                        Code ^{
+                            01=int result;
+                            02=if(PlanetOwner(object) != None && PlanetOwner(object) != Kling)
+                            03 ^{
+                                01=result = PlanetEco(object);
+                            }
+                            04=else
+                            05 ^{
+                                01=result = 10;
+                            }
+                        }
+                        Description=политика
+                    }
+                    3 ^{
+                        Code ^{
+                            01=int result;
+                            02=if(PlanetOwner(object) != None && PlanetOwner(object) != Kling)
+                            03 ^{
+                                01=result = PlanetGov(object);
+                            }
+                            04=else
+                            05 ^{
+                                01=result = 10;
+                            }
+                        }
+                        Description=экономика
+                    }
+                    4 ^{
+                        Code ^{
+                            01=int result = Dist(object, Player());
+                        }
+                        Description=расстояние
+                    }
+                    Count=5
+                }
+                TypeDescription=планеты
+                Update ^{
+                    01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.' + GSJ_type);
+                    02=unknown itemArray = newarray(1);
+                    03=unknown sort_key_array = newarray(1);
+                    04=for(int i = 0; i < StarPlanets(ShipStar(Player())); i = i + 1)
+                    05 ^{
+                        01=dword planet = StarPlanets(ShipStar(Player()), i);
+                        02=if(planet == PlanetPirateClan()) continue;
+                        03=if(ShipRadarRange(Player()) < Dist(Player(),planet)) continue;
+                        04=ArrayAdd(itemArray, Id(planet));
+                        05=ArrayAdd(sort_key_array, ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.' + objtype + '.SortKey.' + GSJ_sort_type + '.Code'), 'object', planet, 'result'));
+                    }
+                    06=ArrayDelete(itemArray, 0);
+                    07=ArrayDelete(sort_key_array, 0);
+                    08=ArraySort(sort_key_array, itemArray);
+                    09=free(sort_key_array);
+                }
+            }
+            Ships ^{
+                Center ^{
+                    01=dword ship = IdToShip(object_id);
+                    02=StarMapCenterView(CoordX(ship), CoordY(ship), 1);
+                }
+                Display ^{
+                    01=str text;
+                    02=if(object_id != -1)
+                    03 ^{
+                        01=str name; str HP; str hullsize;
+                        02=dword object = IdToShip(object_id);
+                        03=name = Name(object);
+                        04=if(count(DeleteTags(name)) > 25)
+                        05 ^{
+                            01=name = substr(DeleteTags(name), 0, 25) + '...';
+                        }
+                        06=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name);
+                        07=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + ShipOwnerString(object));
+                        08=InterfaceText('StarMap', 'sjItem' + index + 'Label3', HullHP(ShipItems(object,0)));
+                        09=InterfaceText('StarMap', 'sjItem' + index + 'Label4', ItemSize(ShipItems(object,0)));
+                    }
+                    04=else
+                    05 ^{
+                        01=InterfaceText('StarMap', 'sjItem' + index + 'Label1', '');
+                        02=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.None');
+                        03=InterfaceText('StarMap', 'sjItem' + index + 'Label3', '');
+                        04=InterfaceText('StarMap', 'sjItem' + index + 'Label4', '');
+                    }
+                    06=InterfaceState('StarMap', 'sjItem' + index + 'Button0', object_id != -1);
+                }
+                InfoLabels ^{
+                    1=имя
+                    2=раса
+                    3=HP
+                    4=корпус
+                }
+                SortKey ^{
+                    0 ^{
+                        Code ^{
+                            01=int result = -HullHP(ShipItems(object,0));
+                        }
+                        Description=ХП
+                    }
+                    1 ^{
+                        Code ^{
+                            01=int result = -ShipType(object);
+                        }
+                        Description=тип
+                    }
+                    2 ^{
+                        Code ^{
+                            01=int result = -ShipPilotRace(object);
+                        }
+                        Description=раса
+                    }
+                    3 ^{
+                        Code ^{
+                            01=int result = -RelationToShip(object, Player());
+                        }
+                        Description=отношение
+                    }
+                    4 ^{
+                        Code ^{
+                            01=int result = Dist(object, Player());
+                        }
+                        Description=расстояние
+                    }
+                    Count=4
+                }
+                TypeDescription=корабли
+                Update ^{
+                    01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.' + GSJ_type);
+                    02=unknown itemArray = newarray(1);
+                    03=unknown sort_key_array = newarray(1);
+                    04=for(int i = 0; i < StarShips(ShipStar(Player())); i = i + 1)
+                    05 ^{
+                        01=dword ship = StarShips(ShipStar(Player()), i);
+                        02=if(ship == Player()) continue;
+                        03=if(!ShipInNormalSpace(ship)) continue;
+                        04=if(ShipRadarRange(Player()) < Dist(Player(),ship)) continue;
+                        05=ArrayAdd(itemArray, Id(ship));
+                        06=ArrayAdd(sort_key_array, ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.' + objtype + '.SortKey.' + GSJ_sort_type + '.Code'), 'object', ship, 'result'));
+                    }
+                    07=ArrayDelete(itemArray, 0);
+                    08=ArrayDelete(sort_key_array, 0);
+                    09=ArraySort(sort_key_array, itemArray);
+                    10=free(sort_key_array);
+                }
+            }
+            UpdateControlPanel ^{
+                01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateObjType'));
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateSortType'));
+                03=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateObjects'));
+                04=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdatePage'));
+            }
+            UpdateObjType ^{
+                01=if(GSJ_type < 0) GSJ_type = 0 + CT('Script.RFESpacejunk.Settings.ObjTypes.Count') - 1;
+                02=if(GSJ_type > (0 + CT('Script.RFESpacejunk.Settings.ObjTypes.Count') - 1)) GSJ_type = 0;
+                03=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.' + GSJ_type);
+                04=InterfaceText('StarMap', 'sjObjTypeLabel', CT('Script.RFESpacejunk.Functions.' + objtype + '.TypeDescription'));
+            }
+            UpdateObjects ^{
+                01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.'+GSJ_type);
+                02=InterfaceText('StarMap', 'sjItemLabel1', CT('Script.RFESpacejunk.Functions.' + objtype + '.InfoLabels.1'));
+                03=InterfaceText('StarMap', 'sjItemLabel2', CT('Script.RFESpacejunk.Functions.' + objtype + '.InfoLabels.2'));
+                04=InterfaceText('StarMap', 'sjItemLabel3', CT('Script.RFESpacejunk.Functions.' + objtype + '.InfoLabels.3'));
+                05=InterfaceText('StarMap', 'sjItemLabel4', CT('Script.RFESpacejunk.Functions.' + objtype + '.InfoLabels.4'));
+                06=unknown itemArray = ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.' + objtype + '.Update'), 'itemArray');
+                07=int items_cnt = ArrayDim(itemArray);
+                08=GSJ_objects = newarray(GSJ_pages_cnt * GSJ_lines_cnt);
+                09=for(int i = 0; i < GSJ_pages_cnt * GSJ_lines_cnt; i = i + 1)
+                10 ^{
+                    01=if(i < items_cnt) GSJ_objects[i] = itemArray[i];
+                    02=else GSJ_objects[i] = -1;
+                }
+                11=GSJ_total_pages = max(min((items_cnt - 1) / GSJ_lines_cnt, GSJ_pages_cnt - 1), 0);
+            }
+            UpdatePage ^{
+                01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.'+GSJ_type);
+                02=GSJ_current_page = min(max(GSJ_current_page, 0), GSJ_total_pages);
+                03=for(int i = 0; i < GSJ_lines_cnt; i = i + 1)
+                04 ^{
+                    01=int index = GSJ_lines_cnt * GSJ_current_page + i;
+                    02=int object_id = GSJ_objects[index];
+                    03=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.' + objtype + '.Display'), 'object_id', object_id, 'index', i);
+                }
+                05=InterfaceState('StarMap', 'sjPageButtonL', GSJ_current_page != 0);
+                06=InterfaceState('StarMap', 'sjPageButtonR', GSJ_current_page != GSJ_total_pages);
+                07=InterfaceText('StarMap', 'sjPageText', ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Utils.GetPageText'), 'result'));
+            }
+            UpdateSortType ^{
+                01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.'+GSJ_type);
+                02=if(GSJ_sort_type < 0) GSJ_sort_type = 0 + CT('Script.RFESpacejunk.Functions.' + objtype + '.SortKey.Count') - 1;
+                03=if(GSJ_sort_type > (0 + CT('Script.RFESpacejunk.Functions.' + objtype + '.SortKey.Count') - 1)) GSJ_sort_type = 0;
+                04=InterfaceText('StarMap', 'sjSortTypeLabel', CT('Script.RFESpacejunk.Functions.' + objtype + '.SortKey.' + GSJ_sort_type + '.Description'));
+            }
+        }
+        InitCode ^{
+            01=GSJ_pages_cnt = CT('Script.RFESpacejunk.Settings.NumberOfPages');
+            02=GSJ_lines_cnt = 20;
+            03=GSJ_current_page = 0;
+            04=GSJ_total_pages = 0;
+            05=GSJ_objects_cnt = 0;
+            06=GSJ_objects = newarray(1);
+            07=GSJ_type = 0;
+            08=GSJ_sort_type = 0;
+            09=for (int i = 0; i < GSJ_lines_cnt; i = i + 1) InterfaceState('StarMap', 'sjItem' + i + 'Button0', 1);
+            10=InterfaceState('StarMap', 'sjMainPanel', 1);
+            11=InterfaceState('StarMap', 'sjPageButtonR', 0);
+            12=InterfaceState('StarMap', 'sjPageButtonL', 0);
+        }
+        PressCodes ^{
+            Center ^{
+                01=str objtype = CT('Script.RFESpacejunk.Settings.ObjTypes.'+GSJ_type);
+                02=int object_id = GSJ_objects[center_button_n + GSJ_current_page * GSJ_lines_cnt];
+                03=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.'+objtype+'.Center'), 'id', object_id);
+            }
+            ClosePanel ^{
+                01=InterfaceState('StarMap','sjOpenPanelButton',1);
+                02=InterfaceState('StarMap','sjInfoPanel',0);
+            }
+            ObjTypeDec ^{
+                01=GSJ_type = GSJ_type - 1;
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateControlPanel'));
+            }
+            ObjTypeInc ^{
+                01=GSJ_type = GSJ_type + 1;
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateControlPanel'));
+            }
+            OpenPanel ^{
+                01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateObjType'));
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateSortType'));
+                03=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateObjects'));
+                04=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdatePage'));
+                05=GSJ_current_page = min(max(GSJ_current_page, 0), GSJ_total_pages);
+                06=InterfaceState('StarMap','sjOpenPanelButton',0);
+                07=InterfaceState('StarMap','sjInfoPanel',1);
+            }
+            PageLeft ^{
+                01=GSJ_current_page = GSJ_current_page - 1;
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdatePage'));
+            }
+            PageRight ^{
+                01=GSJ_current_page = GSJ_current_page + 1;
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdatePage'));
+            }
+            SortTypeDec ^{
+                01=GSJ_sort_type = GSJ_sort_type - 1;
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateControlPanel'));
+            }
+            SortTypeInc ^{
+                01=GSJ_sort_type = GSJ_sort_type + 1;
+                02=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Functions.UpdateControlPanel'));
+            }
+        }
+        Settings ^{
+            NumberOfPages=10
+            ObjTypes ^{
+                0=Items
+                1=Ships
+                2=Planets
+                Count=3
+            }
+        }
+        Text ^{
+            PageText=<L> / <R>
+            RaceColors ^{
+                0=<color=255,0,0>[]</color>
+                1=<color=0,255,0>[]</color>
+                2=<color=0,148,255>[]</color>
+                3=<color=255,147,241>[]</color>
+                4=<color=237,247,62>[]</color>
+                5=<color=97,167,190>[</color>
+                6=<color=0,0,0>[]</color>
+                7=<color=255,255,255>[]</color>
+                AMod_Invaders=<color=255,127,0>[]</color>
+                Empty=<color=0,0,0>--</color>
+                Kling ^{
+                    0=<color=255,0,0>]</color>
+                    1=<color=0,0,255>]</color>
+                    2=<color=0,255,0>]</color>
+                }
+                Klissan=<color=93,182,93>[]</color>
+                PirateClan ^{
+                    0=<color=255,255,255>[</color><color=255,0,0>]</color>
+                    1=<color=255,255,255>[</color><color=0,255,0>]</color>
+                    2=<color=255,255,255>[</color><color=0,0,255>]</color>
+                    3=<color=255,255,255>[</color><color=255,0,255>]</color>
+                    4=<color=255,255,255>[</color><color=255,255,0>]</color>
+                }
+            }
+            TLColors ^{
+                -1=255,127,0
+                -2=127,63,0
+                -3=63,63,0
+                -4=0,0,0
+                -5=0,0,0
+                -6=0,0,0
+                -7=0,0,0
+                0=255,255,0
+                1=127,255,0
+                2=0,255,0
+                3=0,255,127
+                4=0,255,255
+                5=127,255,255
+                6=127,255,255
+                7=127,255,255
+            }
+            othPanelLabels ^{
+                Arts=артефакты
+                Equipments=оборудование
+                Goods=товары
+                Name=Хлам в системе
+                Nods=ноды
+                Others=прочее
+                Weapons=оружие
+            }
+        }
+        TurnCode ^{
+            01=if(InterfaceState('StarMap', 'sjInfoPanel') == 1)
+            02 ^{
+                01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.OpenPanel'));
+            }
+        }
+        Utils ^{
+            GetPageText ^{
+                01=str result = DeleteTags(Format(CT('Script.RFESpacejunk.Text.PageText'), '<L>', GSJ_current_page + 1, '<R>', GSJ_total_pages + 1));
+            }
+            ItemTechLevel ^{
+                01=str result = '';
+                02=if (ItemType(item) >= t_Hull && ItemType(item) <= t_CustomWeapon)
+                03 ^{
+                    01=int TL = ItemLevel(item);
+                    02=result = '<color=' + CT('Script.RFESpacejunk.Text.TLColors.' + (TL - GalaxyTechLevel())) + '>' + substr('ABCDEFGH', TL - 1, 1) + '</color>';
+                }
+            }
+        }
+    }
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            sjAddTypesPanelInfos ^{
+                Description=инфошка для обновления панели sjAddTypesPanel в конце хода
+                Icon=0
+                Name=--
+                OnActCode ^{
+                    01=int i = 0;
+                    02=int goodsCount = 0, weaponsCount = 0, equipsCount = 0, nodsCount = 0, othersCount = 0, artsCount = 0;
+                    03=int goodsCost = 0, weaponsCost = 0, equipsCost = 0, nodsCost=0, othersCost = 0, artsCost = 0;
+                    04=for(i = 0;i < StarItems(ShipStar(Player()));i = i + 1)
+                    05 ^{
+                        01=dword item=StarItems(ShipStar(Player()),i);
+                        02=if(ItemType(item) < t_Artefact)
+                        03 ^{
+                            01=goodsCount = goodsCount + ItemSize(item);
+                            02=goodsCost = goodsCost + ItemCost(item);
+                        }
+                        04=if(ItemType(item) > t_DefGenerator && ItemType(item) < t_Protoplasm)
+                        05 ^{
+                            01=weaponsCount = weaponsCount + ItemSize(item);
+                            02=weaponsCost = weaponsCost + ItemCost(item);
+                        }
+                        06=if(ItemType(item) > t_Hull && ItemType(item)<t_Weapon1)
+                        07 ^{
+                            01=equipsCount = equipsCount + ItemSize(item);
+                            02=equipsCost = equipsCost + ItemCost(item);
+                        }
+                        08=if(ItemType(item) == t_Protoplasm)
+                        09 ^{
+                            01=nodsCount = nodsCount + ItemSize(item);
+                            02=nodsCost = nodsCost + ItemCost(item);
+                        }
+                        10=if(ItemType(item) > t_Protoplasm)
+                        11 ^{
+                            01=othersCount = othersCount + ItemSize(item);
+                            02=othersCost = othersCost + ItemCost(item);
+                        }
+                        12=if(ItemType(item) > t_Narcotics && ItemType(item) < t_Hull)
+                        13 ^{
+                            01=artsCount = artsCount + ItemSize(item);
+                            02=artsCost = artsCost + ItemCost(item);
+                        }
+                    }
+                    06=InterfaceText('StarMap','sjAddTypesGdsCnt',goodsCount);
+                    07=InterfaceText('StarMap','sjAddTypesWpnCnt',weaponsCount);
+                    08=InterfaceText('StarMap','sjAddTypesEqpCnt',equipsCount);
+                    09=InterfaceText('StarMap','sjAddTypesNodCnt',nodsCount);
+                    10=InterfaceText('StarMap','sjAddTypesOthCnt',othersCount);
+                    11=InterfaceText('StarMap','sjAddTypesArtCnt',artsCount);
+                    12=InterfaceText('StarMap','sjAddTypesGdsCst',goodsCost);
+                    13=InterfaceText('StarMap','sjAddTypesWpnCst',weaponsCost);
+                    14=InterfaceText('StarMap','sjAddTypesEqpCst',equipsCost);
+                    15=InterfaceText('StarMap','sjAddTypesNodCst',nodsCost);
+                    16=InterfaceText('StarMap','sjAddTypesOthCst',othersCost);
+                    17=InterfaceText('StarMap','sjAddTypesArtCst',artsCost);
+                }
+                OnActStepTypes=11
+            }
+        }
+    }
+}
