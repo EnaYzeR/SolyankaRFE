@@ -30,7 +30,8 @@ Script ^{
                         }
                         14=if(ItemType(object) > 7)
                         15 ^{
-                            01=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + ItemOwnerString(object));
+                            01=str racestr = ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Utils.RaceString'), 'item', object, 'result');
+                            02=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + racestr);
                         }
                         16=else
                         17 ^{
@@ -247,10 +248,20 @@ Script ^{
                         05 ^{
                             01=name = substr(DeleteTags(name), 0, 25) + '...';
                         }
-                        06=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name);
-                        07=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + ShipOwnerString(object));
-                        08=InterfaceText('StarMap', 'sjItem' + index + 'Label3', HullHP(ShipItems(object,0)));
-                        09=InterfaceText('StarMap', 'sjItem' + index + 'Label4', ItemSize(ShipItems(object,0)));
+                        06=str race = ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Utils.RaceString_Ship'), 'ship', object, 'result');
+                        07=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name);
+                        08=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + race);
+                        09=if(ShipScanerPower(Player()) > ShipProtectability(object))
+                        10 ^{
+                            01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', HullHP(ShipItems(object,0)));
+                            02=InterfaceText('StarMap', 'sjItem' + index + 'Label4', ItemSize(ShipItems(object,0)));
+                        }
+                        11=else
+                        12 ^{
+                            09=InterfaceText('StarMap', 'sjItem' + index + 'Label3', "?");
+                            10=InterfaceText('StarMap', 'sjItem' + index + 'Label4', "?");
+                        }
+                        
                     }
                     04=else
                     05 ^{
@@ -270,7 +281,11 @@ Script ^{
                 SortKey ^{
                     0 ^{
                         Code ^{
-                            01=int result = -HullHP(ShipItems(object,0));
+                            01=int result = 0;
+                            02=if(ShipScanerPower(Player()) > ShipProtectability(object))
+                            03 ^{
+                                01=int result = -HullHP(ShipItems(object,0));
+                            }
                         }
                         Description=ХП
                     }
@@ -346,9 +361,9 @@ Script ^{
                     01=if(i < items_cnt) GSJ_objects[i] = itemArray[i];
                     02=else GSJ_objects[i] = -1;
                 }
-                11=if(items_cnt == 0)
+                11=if(items_cnt)
                 12 ^{
-                    01=GSJ_total_pages = max(min((items_cnt - 1) / min(GSJ_lines_cnt, 1), GSJ_pages_cnt - 1), 0);
+                    01=GSJ_total_pages = max(min((items_cnt - 1) / GSJ_lines_cnt, GSJ_pages_cnt - 1), 0);
                 }
                 13=else
                 14 ^{
@@ -454,6 +469,7 @@ Script ^{
                 6=<color=0,0,0>[]</color>
                 7=<color=255,255,255>[]</color>
                 AMod_Invaders=<color=255,127,0>[]</color>
+                Aperture_Science=<color=0,148,255>[]</color>
                 SubFactionAtlantFixedStanding=<color=152,206,84>[]</color>
                 SubFactionFaeyangelionFixedStanding=<color=178,132,189>[]</color>
                 SubFactionFreelancersFixedStanding=<color=222,222,222>[]</color>
@@ -475,21 +491,21 @@ Script ^{
                 }
             }
             TLColors ^{
-                -1=255,127,0
-                -2=127,63,0
-                -3=63,63,0
-                -4=0,0,0
-                -5=0,0,0
-                -6=0,0,0
-                -7=0,0,0
-                0=255,255,0
-                1=127,255,0
-                2=0,255,0
-                3=0,255,127
-                4=0,255,255
-                5=127,255,255
-                6=127,255,255
-                7=127,255,255
+                -1=255,245,176
+                -2=255,245,176
+                -3=255,245,176
+                -4=255,245,176
+                -5=255,245,176
+                -6=255,245,176
+                -7=255,245,176
+                0=255,245,176
+                1=255,245,176
+                2=255,245,176
+                3=255,245,176
+                4=255,245,176
+                5=255,245,176
+                6=255,245,176
+                7=255,245,176
             }
             othPanelLabels ^{
                 Arts=артефакты
@@ -508,6 +524,71 @@ Script ^{
             }
         }
         Utils ^{
+            RaceString ^{
+				01=str result;
+				02=int itemrace = ItemOwner(item);
+				03=int subrace = ItemSubrace(item);
+				04=str customrace = EqCustomFaction(item);
+                05=if (customrace != '') 
+                06 ^{
+                    01=result = customrace;
+                }
+                07=else
+                08 ^{
+                    01=if (itemrace == Maloc) result = 'Maloc';
+                    02=else if (itemrace == Peleng) result = 'Peleng';
+                    03=else if (itemrace == People) result = 'People';
+                    04=else if (itemrace == Fei) result = 'Fei';
+                    05=else if (itemrace == Gaal) result = 'Gaal';
+                    06=else if (itemrace == Kling)
+                    07 ^{
+                        01=if (subrace == 0) result = 'Blazer';
+                        02=else if (subrace == 1) result = 'Keller';
+                        03=else if (subrace == 2) result = 'Terron';
+                        03=else if (subrace == 6) result = 'Klissan';
+                        04=else result = 'Klissan';
+                    }
+                    08=else if (itemrace == PirateClan) result = 'Pirate';
+                    09=else result = 'None';
+                }
+			}
+			RaceString_Ship ^{
+				01=str result;
+				02=int shiprace = ShipOwner(ship);
+				03=int subrace = ItemSubrace(ShipItems(ship, 0));
+				04=str customrace = ShipCustomFaction(ship);
+                05=if (customrace != '') 
+                06 ^{
+                    01=result = customrace;
+                }
+                07=else
+                08 ^{
+                    01=if (shiprace == Maloc) result = 'Maloc';
+                    02=else if (shiprace == Peleng) result = 'Peleng';
+                    03=else if (shiprace == People) result = 'People';
+                    04=else if (shiprace == Fei) result = 'Fei';
+                    05=else if (shiprace == Gaal) result = 'Gaal';
+                    06=else if (shiprace == Kling)
+                    07 ^{
+                        01=if (subrace == 0) result = 'Blazer';
+                        02=else if (subrace == 1) result = 'Keller';
+                        03=else if (subrace == 2) result = 'Terron';
+                        03=else if (subrace == 6) result = 'Klissan';
+                        04=else result = 'Klissan';
+                    }
+                    08=else if (shiprace == PirateClan)
+                    09 ^{
+				        01=int pilotrace = ShipPilotRace(ship); 
+                        02=if (pilotrace == Maloc) result = 'PirateMaloc';
+                        03=else if (pilotrace == Peleng) result = 'PiratePeleng';
+                        04=else if (pilotrace == People) result = 'PiratePeople';
+                        05=else if (pilotrace == Fei) result = 'PirateFei';
+                        06=else if (pilotrace == Gaal) result = 'PirateGaal';
+                        07=else result = 'Pirate';
+                    }
+                    10=else result = 'None';
+                }
+			}
             GetPageText ^{
                 01=str result = DeleteTags(Format(CT('Script.RFESpacejunk.Text.PageText'), '<L>', GSJ_current_page + 1, '<R>', GSJ_total_pages + 1));
             }

@@ -1,8 +1,8 @@
 {
   "FileID":  573785173,
   "FileVersion":  8,
-  "ViewPos.x":  21,
-  "ViewPos.y":  -3,
+  "ViewPos.x":  261,
+  "ViewPos.y":  190,
   "ScriptName":  "RFESpacejunk",
   "ScriptFileOut":  "Z:\\home\\lorki\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFESpacejunk\\Data\\Script\\RFESpacejunk.scr",
   "ScriptTextOut":  "Z:\\home\\lorki\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFESpacejunk\\Data\\Script\\RFESpacejunk.txt",
@@ -100,7 +100,7 @@
           "Code.Type":  "Turn",
           "Code":          
           [
-              "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.AMod_Spacejunk.TurnCode'));"          
+              "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.TurnCode'));"          
           ]        
         }      
       ],

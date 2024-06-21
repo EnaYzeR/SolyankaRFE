@@ -28,7 +28,8 @@ Bm ^{
         wght=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\wght.gi
     }
     SmallOwners ^{
-        Ark=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Ark.gi
+        Ark=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\AMod_Invaders.gi
+        AMod_Invaders=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\AMod_Invaders.gi
         Blazer=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Blazer.gi
         Fei=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Fei.gi
         Gaal=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Gaal.gi
@@ -51,6 +52,7 @@ Bm ^{
         SubFactionFaeyangelionFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\Faeyangelion.gi
         SubFactionFreelancersFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\None.gi
         SubFactionRedAxesFixedStanding=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\RedAxes.gi
+        Aperture_Science=Mods\SolyankaRFE\RFESpacejunk\Data\FormStarMap\SmallOwners\ApertureScience.gi
     }
 }
 Script ^{
