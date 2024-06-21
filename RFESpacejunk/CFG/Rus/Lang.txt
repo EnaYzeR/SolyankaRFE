@@ -281,7 +281,7 @@ Script ^{
                 SortKey ^{
                     0 ^{
                         Code ^{
-                            01=int result = 0;
+                            01=int result = -Rnd(100000000,999999999);
                             02=if(ShipScanerPower(Player()) > ShipProtectability(object))
                             03 ^{
                                 01=result = -HullHP(ShipItems(object,0));
