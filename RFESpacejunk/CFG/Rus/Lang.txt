@@ -241,7 +241,7 @@ Script ^{
                     01=str text;
                     02=if(object_id != -1)
                     03 ^{
-                        01=str name; str HP; str hullsize;
+                        01=str name; int HP; int hullsize;
                         02=dword object = IdToShip(object_id);
                         03=name = Name(object);
                         04=if(count(DeleteTags(name)) > 25)
@@ -251,15 +251,31 @@ Script ^{
                         06=str race = ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.Utils.RaceString_Ship'), 'ship', object, 'result');
                         07=InterfaceText('StarMap', 'sjItem' + index + 'Label1', name);
                         08=InterfaceImage('StarMap', 'sjItem' + index + 'Image2', 'GI,Bm.SmallOwners.' + race);
-                        09=if(ShipScanerPower(Player()) > ShipProtectability(object))
-                        10 ^{
-                            01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', HullHP(ShipItems(object,0)));
-                            02=InterfaceText('StarMap', 'sjItem' + index + 'Label4', ItemSize(ShipItems(object,0)));
-                        }
-                        11=else
+                        09=HP = HullHP(ShipItems(object,0));
+                        10=hullsize = ItemSize(ShipItems(object,0));
+                        11=if(ShipScanerPower(Player()) > ShipProtectability(object))
                         12 ^{
-                            09=InterfaceText('StarMap', 'sjItem' + index + 'Label3', "?");
-                            10=InterfaceText('StarMap', 'sjItem' + index + 'Label4', "?");
+                            01=if(HP > (hullsize / 2))
+                            02 ^{
+                                01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', HP);
+                            }
+                            03=else
+                            04 ^{
+                                01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', "<color=255,166,0>" + HP + "</color>");
+                            }
+                            05=InterfaceText('StarMap', 'sjItem' + index + 'Label4', hullsize);
+                        }
+                        13=else
+                        14 ^{
+                            01=if(HP > (hullsize / 2))
+                            02 ^{
+                                01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', "?");
+                            }
+                            03=else
+                            04 ^{
+                                01=InterfaceText('StarMap', 'sjItem' + index + 'Label3', "<color=255,166,0>?</color>");
+                            }
+                            05=InterfaceText('StarMap', 'sjItem' + index + 'Label4', "?");
                         }
                         
                     }
@@ -275,8 +291,8 @@ Script ^{
                 InfoLabels ^{
                     1=имя
                     2=раса
-                    3=HP
-                    4=корпус
+                    3=стойкость
+                    4=структура
                 }
                 SortKey ^{
                     0 ^{
@@ -287,7 +303,7 @@ Script ^{
                                 01=result = -HullHP(ShipItems(object,0));
                             }
                         }
-                        Description=ХП
+                        Description=структура
                     }
                     1 ^{
                         Code ^{
@@ -304,6 +320,11 @@ Script ^{
                     3 ^{
                         Code ^{
                             01=int result = -RelationToShip(object, Player());
+                            02=if(ShipTypeN(object) == t_Kling)
+                            03 ^{
+                                result = 10000;
+                            }
+                            
                         }
                         Description=отношение
                     }
@@ -313,7 +334,17 @@ Script ^{
                         }
                         Description=расстояние
                     }
-                    Count=4
+                    5 ^{
+                        Code ^{
+                            01=int result = -Rnd(100000000,999999999);
+                            02=if(ShipScanerPower(Player()) > ShipProtectability(object))
+                            03 ^{
+                                01=result = -ItemSize(ShipItems(object,0));
+                            }
+                        }
+                        Description=стойкость
+                    }
+                    Count=6
                 }
                 TypeDescription=корабли
                 Update ^{
