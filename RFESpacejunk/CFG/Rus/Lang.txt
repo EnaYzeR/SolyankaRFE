@@ -553,6 +553,56 @@ Script ^{
             02 ^{
                 01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.PressCodes.OpenPanel'));
             }
+            03=int i = 0;
+            04=int goodsCount = 0, weaponsCount = 0, equipsCount = 0, nodsCount = 0, othersCount = 0, artsCount = 0;
+            05=int goodsCost = 0, weaponsCost = 0, equipsCost = 0, nodsCost=0, othersCost = 0, artsCost = 0;
+            06=for(i = 0;i < StarItems(ShipStar(Player()));i = i + 1)
+            07 ^{
+                01=dword item=StarItems(ShipStar(Player()),i);
+                02=if(ShipRadarRange(Player()) < Dist(Player(), item)) continue;
+                03=if(ItemType(item) < t_Artefact)
+                04 ^{
+                    01=goodsCount = goodsCount + ItemSize(item);
+                    02=goodsCost = goodsCost + ItemCost(item);
+                }
+                05=if(ItemType(item) > t_DefGenerator && ItemType(item) < t_Protoplasm)
+                06 ^{
+                    01=weaponsCount = weaponsCount + ItemSize(item);
+                    02=weaponsCost = weaponsCost + ItemCost(item);
+                }
+                07=if(ItemType(item) > t_Hull && ItemType(item)<t_Weapon1)
+                08 ^{
+                    01=equipsCount = equipsCount + ItemSize(item);
+                    02=equipsCost = equipsCost + ItemCost(item);
+                }
+                09=if(ItemType(item) == t_Protoplasm)
+                10 ^{
+                    01=nodsCount = nodsCount + ItemSize(item);
+                    02=nodsCost = nodsCost + ItemCost(item);
+                }
+                11=if(ItemType(item) > t_Protoplasm)
+                12 ^{
+                    01=othersCount = othersCount + ItemSize(item);
+                    02=othersCost = othersCost + ItemCost(item);
+                }
+                13=if(ItemType(item) > t_Narcotics && ItemType(item) < t_Hull)
+                14 ^{
+                    01=artsCount = artsCount + ItemSize(item);
+                    02=artsCost = artsCost + ItemCost(item);
+                }
+            }
+            08=InterfaceText('StarMap','sjAddTypesGdsCnt',goodsCount);
+            09=InterfaceText('StarMap','sjAddTypesWpnCnt',weaponsCount);
+            10=InterfaceText('StarMap','sjAddTypesEqpCnt',equipsCount);
+            11=InterfaceText('StarMap','sjAddTypesNodCnt',nodsCount);
+            12=InterfaceText('StarMap','sjAddTypesOthCnt',othersCount);
+            13=InterfaceText('StarMap','sjAddTypesArtCnt',artsCount);
+            14=InterfaceText('StarMap','sjAddTypesGdsCst',goodsCost);
+            15=InterfaceText('StarMap','sjAddTypesWpnCst',weaponsCost);
+            16=InterfaceText('StarMap','sjAddTypesEqpCst',equipsCost);
+            17=InterfaceText('StarMap','sjAddTypesNodCst',nodsCost);
+            18=InterfaceText('StarMap','sjAddTypesOthCst',othersCost);
+            19=InterfaceText('StarMap','sjAddTypesArtCst',artsCost);
         }
         Utils ^{
             RaceString ^{
@@ -642,57 +692,22 @@ ShipInfo ^{
                 Icon=0
                 Name=--
                 OnActCode ^{
-                    01=int i = 0;
-                    02=int goodsCount = 0, weaponsCount = 0, equipsCount = 0, nodsCount = 0, othersCount = 0, artsCount = 0;
-                    03=int goodsCost = 0, weaponsCost = 0, equipsCost = 0, nodsCost=0, othersCost = 0, artsCost = 0;
-                    04=for(i = 0;i < StarItems(ShipStar(Player()));i = i + 1)
-                    05 ^{
-                        01=dword item=StarItems(ShipStar(Player()),i);
-                        02=if(ItemType(item) < t_Artefact)
-                        03 ^{
-                            01=goodsCount = goodsCount + ItemSize(item);
-                            02=goodsCost = goodsCost + ItemCost(item);
-                        }
-                        04=if(ItemType(item) > t_DefGenerator && ItemType(item) < t_Protoplasm)
-                        05 ^{
-                            01=weaponsCount = weaponsCount + ItemSize(item);
-                            02=weaponsCost = weaponsCost + ItemCost(item);
-                        }
-                        06=if(ItemType(item) > t_Hull && ItemType(item)<t_Weapon1)
-                        07 ^{
-                            01=equipsCount = equipsCount + ItemSize(item);
-                            02=equipsCost = equipsCost + ItemCost(item);
-                        }
-                        08=if(ItemType(item) == t_Protoplasm)
-                        09 ^{
-                            01=nodsCount = nodsCount + ItemSize(item);
-                            02=nodsCost = nodsCost + ItemCost(item);
-                        }
-                        10=if(ItemType(item) > t_Protoplasm)
-                        11 ^{
-                            01=othersCount = othersCount + ItemSize(item);
-                            02=othersCost = othersCost + ItemCost(item);
-                        }
-                        12=if(ItemType(item) > t_Narcotics && ItemType(item) < t_Hull)
-                        13 ^{
-                            01=artsCount = artsCount + ItemSize(item);
-                            02=artsCost = artsCost + ItemCost(item);
-                        }
-                    }
-                    06=InterfaceText('StarMap','sjAddTypesGdsCnt',goodsCount);
-                    07=InterfaceText('StarMap','sjAddTypesWpnCnt',weaponsCount);
-                    08=InterfaceText('StarMap','sjAddTypesEqpCnt',equipsCount);
-                    09=InterfaceText('StarMap','sjAddTypesNodCnt',nodsCount);
-                    10=InterfaceText('StarMap','sjAddTypesOthCnt',othersCount);
-                    11=InterfaceText('StarMap','sjAddTypesArtCnt',artsCount);
-                    12=InterfaceText('StarMap','sjAddTypesGdsCst',goodsCost);
-                    13=InterfaceText('StarMap','sjAddTypesWpnCst',weaponsCost);
-                    14=InterfaceText('StarMap','sjAddTypesEqpCst',equipsCost);
-                    15=InterfaceText('StarMap','sjAddTypesNodCst',nodsCost);
-                    16=InterfaceText('StarMap','sjAddTypesOthCst',othersCost);
-                    17=InterfaceText('StarMap','sjAddTypesArtCst',artsCost);
+                    01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.TurnCode'));
                 }
                 OnActStepTypes=11
+            }
+            RFESpacejunk_OnShipFormClose ^{
+                Icon=0
+                Name=OnShipFormClose
+                Description=NoShow
+
+				OnActCodeTypes=t_OnLeavingForm
+				OnActCode ^{
+                    01=if(CurrentForm() == 'Ship')
+                    02 ^{
+                        01=ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.TurnCode'));
+                    }
+				}
             }
         }
     }

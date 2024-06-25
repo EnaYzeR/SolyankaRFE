@@ -1,12 +1,12 @@
 {
   "FileID":  573785173,
   "FileVersion":  8,
-  "ViewPos.x":  261,
-  "ViewPos.y":  190,
+  "ViewPos.x":  250,
+  "ViewPos.y":  124,
   "ScriptName":  "RFESpacejunk",
   "ScriptFileOut":  "Z:\\home\\lorki\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFESpacejunk\\Data\\Script\\RFESpacejunk.scr",
   "ScriptTextOut":  "Z:\\home\\lorki\\Documents\\SpaceRangers\\SpaceRangersHD\\Mods\\SolyankaRFE\\RFESpacejunk\\Data\\Script\\RFESpacejunk.txt",
-  "GraphPoint.Count":  17,
+  "GraphPoint.Count":  18,
   "GraphLink.Count":  5,
   "GraphRectText.Count":  0,
   "Variables.Count":  8,
@@ -21,7 +21,7 @@
   "Dialogs.Count":  0,
   "DialogMessages.Count":  0,
   "DialogAnswers.Count":  0,
-  "Operations.Count":  3,
+  "Operations.Count":  4,
   "Statements.Count":  1,
   "Loops.Count":  0,
   "Visual.Objects":  
@@ -82,11 +82,12 @@
           "Pos.y":  400,
           "Parent":  -1,
           "#":  6,
-          "Total.Lines":  1,
+          "Total.Lines":  2,
           "Code.Type":  "Init",
           "Code":          
           [
-              "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.InitCode'));"          
+              "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.InitCode'));",
+              "ShipAddCustomShipInfo(Player(),'RFESpacejunk_OnShipFormClose');"          
           ]        
         },
         {
@@ -101,6 +102,23 @@
           "Code":          
           [
               "ExecuteCodeFromString(GenerateCodeStringFromBlock('Script.RFESpacejunk.TurnCode'));"          
+          ]        
+        },
+        {
+          "Type":  "Top",
+          "Name":  "",
+          "Pos.x":  790,
+          "Pos.y":  400,
+          "Parent":  -1,
+          "#":  17,
+          "Total.Lines":  4,
+          "Code.Type":  "Turn",
+          "Code":          
+          [
+              "if(ShipFindCustomShipInfoByType(Player(),'RFESpacejunk_OnShipFormClose') == -1)",
+              "{",
+              "    ShipAddCustomShipInfo(Player(),'RFESpacejunk_OnShipFormClose');",
+              "}"          
           ]        
         }      
       ],
